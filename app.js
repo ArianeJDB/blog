@@ -14,13 +14,26 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/api/posts', (req, res) => {
-    //compruebas en postman o en navegador el localhost:3000/hola la ruta que le he puesto y debe salir lo que le metí como mensaje
-    //res.send(200, {posts: []})DEPRECATED
-    res.status(200).send({posts: []})
+    Post.find({}, (err, posts) => {
+        
+        if(err) return res.status(500).send({message: `Error al hacer la petición: ${err}`})
+        if(!posts) return res.status(404).send({message: 'no hay posts'})
+
+        res.send(200, { posts })
+})
 })
 
-app.get('/api/posts/:postId', (req, res) => {
 
+//pedir info de un post específico con su ID
+app.get('/api/posts/:postId', (req, res) => {
+    let postId = req.params.postId
+
+    Post.findById(postId, (err, post) => {
+        if(err) return res.status(500).send({message: `Error al hacer la petición: ${err}`})
+        if(!post) return res.status(404).send({message: 'Este post no existe'})
+
+        res.status(200).send({ post }) //destructuring porque clave y value se llaman igual
+    })
 })
 
 app.post('/api/posts', (req, res) => {
@@ -43,11 +56,27 @@ app.post('/api/posts', (req, res) => {
 })
 
 app.put('/api/posts/:postId', (req, res) => {
+    let postId = req.params.postId;
+    let bodyUpdated = req.body
+    Post.findByIdAndUpdate(postId, bodyUpdated, (err, postUpdated) => {
+        if(err) res.status(500).send({message: `Error al editar este post: ${err}`})
 
+        res.status(200).send({ post: postUpdated })
+    })
 })
 
 app.delete('/api/posts/:postId', (req, res) => {
+    let postId = req.params.postId
 
+    Post.findById(postId, (err, post) => {
+        if(err) res.status(500).send({message: `Error al borrar este post: ${err}`})
+
+        post.remove(err => {
+            if(err) res.status(500).send({message: `Error al borrar este post: ${err}`})
+
+            res.status(200).send({message: 'El post ha sido borrado'})
+        })
+    })
 })
 
 mongoose.connect('mongodb://localhost:27017/blog', (err, res) => {

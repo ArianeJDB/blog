@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "",
+		"name": "REST API Posts",
+		"schema": ""
+	},
+	"item": [
+		{
+			"name": "New Post POST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"message\": \"I invented RAM and Ion-Lithium batteries\",\n\t\"author\": \"John B. Goodenough\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/ads/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ads",
+						""
+					]
+				}
+			},
+			"response": []
+		},
