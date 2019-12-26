@@ -5,7 +5,9 @@ const Schema = mongoose.Schema;
 
 const PostSchema = Schema({
     userName: String,
-    textBody: String,
+    nickName: String,
+    title: String,
+    text: String,
 
 })
 

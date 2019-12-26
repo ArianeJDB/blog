@@ -1,38 +1,185 @@
 {
 	"info": {
-		"_postman_id": "",
-		"name": "REST API Posts",
-		"schema": ""
+		"_postman_id": "5b4a5153-03ae-4ced-aa4f-ea32900a33d5",
+		"name": "REST API Blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "New Post POST",
+			"name": "blogGET",
 			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"message\": \"I invented RAM and Ion-Lithium batteries\",\n\t\"author\": \"John B. Goodenough\"\n}"
-				},
+				"method": "GET",
+				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/ads/",
+					"raw": "http://localhost:3000/api/posts/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"ads",
+						"api",
+						"posts",
 						""
 					]
 				}
 			},
 			"response": []
 		},
+		{
+			"name": "blogPOST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "userName",
+							"value": "Finx",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "prueba para borrar",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "bueno igual me van a borrar",
+							"type": "text"
+						},
+						{
+							"key": "nickName",
+							"value": "finxis",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/posts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "blogGETOne",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/posts/5e04857edb49353c3bfc4202",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"posts",
+						"5e04857edb49353c3bfc4202"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "blogPUT edit",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "mi primer post =)",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/posts/5e04857edb49353c3bfc4202",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"posts",
+						"5e04857edb49353c3bfc4202"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "blog GET ONE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/posts/5e049a3eae873c55eb215fd9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"posts",
+						"5e049a3eae873c55eb215fd9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "blog DELETE ONE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/posts/5e049a3eae873c55eb215fd9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"posts",
+						"5e049a3eae873c55eb215fd9"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
