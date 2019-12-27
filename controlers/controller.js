@@ -39,19 +39,6 @@ function editPost (req, res)  {
     })
 }
 
-function newComment (req, res) {
-    let postId = req.params.postId;
-    let bodyComment = req.body.comments
-
-    console.log('BODYCOMMENT',bodyComment)
-    
-    Post.findByIdAndUpdate(postId, bodyComment, (err, postUpdated) => {
-        if(err) res.status(500).send({message: `Error al editar este post: ${err}`})
-
-        res.status(200).send({ post: postUpdated })
-    })
- 
-} 
 
 //POST NEW ENTIRE POST SIN COMENTARIOS
 function savePost (req, res) {
@@ -70,11 +57,11 @@ function savePost (req, res) {
         if(err) res.status(500).send({message: `Error al enviar post: &{err}`})
     })
 
-    res.status(200).send({ post })
+    res.status(200).send({ post }) 
 }
 
 
-
+ 
 //DELETE ONE POST
 function deleteOnePost (req, res) {
     let postId = req.params.postId
@@ -90,13 +77,39 @@ function deleteOnePost (req, res) {
     })
 }
 
+//DELETE ONE COMMENT
+function deleteComment (req, res) {
+    let postId = req.params.postId
+
+    Post.findOneAndUpdate(postId, { $pull: {"comments": { _id: commentId}}},(err, post) => {
+        if(err) res.status(500).send({message: `Error al borrar este post: ${err}`})
+
+    //     post.remove(err => {
+    //         if(err) res.status(500).send({message: `Error al borrar este post: ${err}`})
+
+            res.status(200).send({message: 'El post ha sido borrado'})
+        })
+    }
+    //)
+
+    // Post.findOneAndUpdate(postId, {$pull: {comments: { _id: id }}}, function(err, data){
+    //     if(err) {
+    //         return res.status(500).json({"error":"no se pudo borrar"});
+    //     } 
+    //     res.json(data)
+    // })
+     
+// }
+ 
+
 module.exports = {
     getPosts,
     getOnePost,
     editPost,
     savePost,
     deleteOnePost,
-    newComment
+    deleteComment
+    
 
     
 }

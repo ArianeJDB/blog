@@ -22,7 +22,8 @@
 						"posts",
 						""
 					]
-				}
+				},
+				"description": "Recupera todas las entradas sin sus comentarios"
 			},
 			"response": []
 		},
@@ -43,22 +44,22 @@
 					"urlencoded": [
 						{
 							"key": "userName",
-							"value": "Finx",
+							"value": "Joaquín",
 							"type": "text"
 						},
 						{
 							"key": "title",
-							"value": "prueba para borrar",
+							"value": "Soy un gato",
 							"type": "text"
 						},
 						{
 							"key": "text",
-							"value": "bueno igual me van a borrar",
+							"value": "me estoy portando muy mal hoy",
 							"type": "text"
 						},
 						{
 							"key": "nickName",
-							"value": "finxis",
+							"value": "GatoPerro",
 							"type": "text"
 						}
 					]
@@ -175,6 +176,75 @@
 						"api",
 						"posts",
 						"5e049a3eae873c55eb215fd9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "prueba post comment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "blog GETOne with comments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/posts/5e05058b9fc96039ce927b54",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"posts",
+						"5e05058b9fc96039ce927b54"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "blog PUT add comments",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \n        \"comments\": [\n        \t\t{\n        \t\t\t\"nickName\": \"pin\",\n        \t\t\t\"comment\": \"primer comentario\"\n        \t\t},\n        \t\t{\n        \t\t\t\"nickName\": \"pon\",\n        \t\t\t\"comment\": \"otro comentario\"\n        \t\t}\n        \t]\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/posts/5e05058b9fc96039ce927b54",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"posts",
+						"5e05058b9fc96039ce927b54"
 					]
 				}
 			},
