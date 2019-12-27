@@ -1,0 +1,15 @@
+HECHO: Recuperación de todas las entradas (sin comentarios) GET JSON SIN COMMENTARIOS
+
+HECHO: Recuperación de una entrada (con comentarios) POR ID AHORA CON SUS COMMENTARIOS
+
+HECHO: Creación de una nueva entrada (sin comentarios)
+
+HECHO: Borrado de una entrada existente (con todos sus comentarios)
+
+HECHO: Modificación de una entrada existente (se actualizará toda la información de la misma, excepto sus comentarios)
+
+EN PROCESO: SERIA UN PUT DE LA ENTRADA, SOLO MODIFICANDO EL COMENTARIO: Adición de un nuevo comentario a una entrada
+
+CREO QUE SERIA UN PUT TAMBIEN, MODIFICANDO EL COMENTARIO Modificación de un comentario existente
+
+NO SE COMO SIN ID: Borrado de un comentario existente en una entrada

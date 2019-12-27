@@ -1,0 +1,32 @@
+{
+    "posts": [
+        {
+            "_id": "5e04857edb49353c3bfc4202",
+            "userName": "Pepa",
+            "nickName": "Pig",
+            "title": "mi primer post =)",
+            "text": "Hola, qué tal?",
+            "comments": [
+                {
+                    "nickName": "Jax",
+                    "text": "este es un comentario",
+                    "date": "27-12-2019"
+                },
+                {
+                    "nickName": "Pin",
+                    "text": "este es otro comentario",
+                    "date": "28-12-2019"
+                }
+
+            ]
+            
+        },
+        {
+            "_id": "5e049160b377d74dd18e7cc7",
+            "userName": "Paca",
+            "nickName": "Paquita",
+            "title": " Segundo post",
+            "text": "Jeh jeh!"            
+        }
+    ]
+}
