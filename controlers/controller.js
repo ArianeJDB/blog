@@ -5,7 +5,6 @@ const Post = require('../models/post');
 
 
 function getPosts (req, res) {
-    //GET ALL BUT COMMENTS DONE
     Post.find({}, {comments:0}, (err, posts) => {
         
         if(err) return res.status(500).send({message: `Error al hacer la petición: ${err}`})
@@ -15,7 +14,7 @@ function getPosts (req, res) {
 })
 }
 
-//GET ONE WITH COMMENTS DONE
+
 function getOnePost (req, res) {
     let postId = req.params.postId
 
@@ -23,19 +22,7 @@ function getOnePost (req, res) {
         if(err) return res.status(500).send({message: `Error al hacer la petición: ${err}`})
         if(!post) return res.status(404).send({message: 'Este post no existe'})
 
-        res.status(200).send({ post }) //destructuring porque clave y value se llaman igual
-    })
-}
-
-//PUT POST, EDIT IT
-function editPost (req, res)  {
-    let postId = req.params.postId;
-    let bodyUpdated = req.body
-    
-    Post.findByIdAndUpdate(postId, bodyUpdated, (err, postUpdated) => {
-        if(err) res.status(500).send({message: `Error al editar este post: ${err}`})
-
-        res.status(200).send({ post: postUpdated })
+        res.status(200).send({ post })
     })
 }
 
@@ -61,8 +48,18 @@ function savePost (req, res) {
 }
 
 
+function editPost (req, res)  {
+    let postId = req.params.postId;
+    let bodyUpdated = req.body
+    
+    Post.findByIdAndUpdate(postId, bodyUpdated, (err, postUpdated) => {
+        if(err) res.status(500).send({message: `Error al editar este post: ${err}`})
+
+        res.status(200).send({ post: postUpdated })
+    })
+}
  
-//DELETE ONE POST
+
 function deleteOnePost (req, res) {
     let postId = req.params.postId
 
