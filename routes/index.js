@@ -1,17 +1,16 @@
 'use strict'
 
 const express = require('express');
-const api = express.Router();
+const blog = express.Router();
 const postController = require('../controlers/controller')
 
 
 
-api.get('/posts', postController.getPosts)
-api.get('/posts/:postId', postController.getOnePost)
-api.post('/posts', postController.savePost)
-api.put('/posts/:postId', postController.editPost)
-api.delete('/posts/:postId',postController.deleteOnePost)
+blog.get('/posts', postController.getPosts)
+blog.get('/posts/:postId', postController.getOnePost)
+blog.post('/posts', postController.savePost)
+blog.put('/posts/:postId', postController.editPost)
+blog.delete('/posts/:postId',postController.deleteOnePost)
+blog.delete('/posts/:postId/comments/:commentId', postController.deleteComment)
 
-api.delete('/posts/:postId/comments/:commentId', postController.deleteComment)
-
-module.exports = api; 
+module.exports = blog; 

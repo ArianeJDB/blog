@@ -11,14 +11,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/posts/",
+					"raw": "http://localhost:3000/blog/posts/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
+						"blog",
 						"posts",
 						""
 					]
@@ -44,35 +44,46 @@
 					"urlencoded": [
 						{
 							"key": "userName",
-							"value": "Joaquín",
+							"value": "1",
 							"type": "text"
 						},
 						{
 							"key": "title",
-							"value": "Soy un gato",
+							"value": "1",
 							"type": "text"
 						},
 						{
 							"key": "text",
-							"value": "me estoy portando muy mal hoy",
+							"value": "1",
 							"type": "text"
 						},
 						{
 							"key": "nickName",
-							"value": "GatoPerro",
+							"value": "1",
 							"type": "text"
+						},
+						{
+							"key": "comments",
+							"value": "",
+							"type": "text",
+							"disabled": true
 						}
-					]
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/posts/",
+					"raw": "http://localhost:3000/blog/posts/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
+						"blog",
 						"posts",
 						""
 					]
@@ -86,16 +97,16 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/posts/5e04857edb49353c3bfc4202",
+					"raw": "http://localhost:3000/blog/posts/5e05ffb0275efc3ea4c9c56e",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
+						"blog",
 						"posts",
-						"5e04857edb49353c3bfc4202"
+						"5e05ffb0275efc3ea4c9c56e"
 					]
 				}
 			},
@@ -118,43 +129,27 @@
 					"urlencoded": [
 						{
 							"key": "title",
-							"value": "mi primer post =)",
+							"value": "modificado",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "modificado",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/posts/5e04857edb49353c3bfc4202",
+					"raw": "http://localhost:3000/blog/posts/5e05ffb0275efc3ea4c9c56e",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
+						"blog",
 						"posts",
-						"5e04857edb49353c3bfc4202"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "blog GET ONE",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/posts/5e049a3eae873c55eb215fd9",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"posts",
-						"5e049a3eae873c55eb215fd9"
+						"5e05ffb0275efc3ea4c9c56e"
 					]
 				}
 			},
@@ -166,28 +161,17 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/posts/5e049a3eae873c55eb215fd9",
+					"raw": "http://localhost:3000/blog/posts/5e0e1f43f775ed334c8a5f20",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
+						"blog",
 						"posts",
-						"5e049a3eae873c55eb215fd9"
+						"5e0e1f43f775ed334c8a5f20"
 					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "prueba post comment",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": ""
 				}
 			},
 			"response": []
@@ -198,16 +182,16 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/posts/5e05058b9fc96039ce927b54",
+					"raw": "http://localhost:3000/blog/posts/5e05ffb0275efc3ea4c9c56e",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
+						"blog",
 						"posts",
-						"5e05058b9fc96039ce927b54"
+						"5e05ffb0275efc3ea4c9c56e"
 					]
 				}
 			},
@@ -235,7 +219,28 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/posts/5e05058b9fc96039ce927b54",
+					"raw": "http://localhost:3000/blog/posts/5e0e2133e6fe5f361503a746",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"blog",
+						"posts",
+						"5e0e2133e6fe5f361503a746"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE COMMENT",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/posts/5e05ffb0275efc3ea4c9c56e/comments/5e05ffba275efc3ea4c9c56f",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -244,7 +249,46 @@
 					"path": [
 						"api",
 						"posts",
-						"5e05058b9fc96039ce927b54"
+						"5e05ffb0275efc3ea4c9c56e",
+						"comments",
+						"5e05ffba275efc3ea4c9c56f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT edit comment",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \n        \"comments\": [\n        \t\t{\n        \t\t\t\"nickName\": \"pinMODIF\",\n        \t\t\t\"comment\": \"primer comentario MODIF\"\n        \t\t},\n        \t\t{\n        \t\t\t\"nickName\": \"pon\",\n        \t\t\t\"comment\": \"otro comentario MODIF\"\n        \t\t}\n        \t]\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/blog/posts/5e05ffb0275efc3ea4c9c56e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"blog",
+						"posts",
+						"5e05ffb0275efc3ea4c9c56e"
 					]
 				}
 			},

@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "de9c7b52-1481-46ae-b46a-e080f4a2c4e1",
+		"name": "words",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST new offensive word",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "word",
+							"value": "o",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "level",
+							"value": "2",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/words/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"words",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL offensive words",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/words/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"words",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EDIT an offensive word",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "word",
+							"value": "vergación",
+							"type": "text"
+						},
+						{
+							"key": "level",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/words/5e0e33e6c302b54e59fe8c0b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"words",
+						"5e0e33e6c302b54e59fe8c0b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE an offensive word",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/words/5e0e35e831d95e5071f6129a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"words",
+						"5e0e35e831d95e5071f6129a"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

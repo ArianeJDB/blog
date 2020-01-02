@@ -1,10 +1,8 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const uuid = require('uuidv4')
 
 const Schema = mongoose.Schema;
-//const Comment = require('./comment')
 
 const CommentSchema = new Schema({
     nickName: String,
@@ -25,6 +23,6 @@ const PostSchema = new Schema({
 
 
 module.exports = mongoose.model('Post', PostSchema)
-//module.exports = mongoose.model('Comment', CommentSchema)
+
 
     

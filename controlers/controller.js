@@ -29,7 +29,7 @@ function getOnePost (req, res) {
 
 //POST NEW ENTIRE POST SIN COMENTARIOS
 function savePost (req, res) {
-    // console.log('post /api/posts')
+   
     // console.log('REQ.BODY---------------->',req.body);
 
     let post = new Post();
@@ -49,16 +49,17 @@ function savePost (req, res) {
 
 
 function editPost (req, res)  {
+    //edit title and text
     let postId = req.params.postId;
-    let bodyUpdated = req.body
-    
+    let bodyUpdated = req.body;
+
     Post.findByIdAndUpdate(postId, bodyUpdated, (err, postUpdated) => {
         if(err) res.status(500).send({message: `Error al editar este post: ${err}`})
 
         res.status(200).send({ post: postUpdated })
     })
 }
- 
+
 
 function deleteOnePost (req, res) {
     let postId = req.params.postId
