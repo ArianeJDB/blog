@@ -12,4 +12,4 @@ HECHO MAL: PUT DE LA ENTRADA, SOLO MODIFICANDO EL COMENTARIO: Adición de un nue
 
 HECHO MAL: PUT DE LA ENTRADA. Modificación de un comentario existente
 
-NO SE COMOBorrado de un comentario existente en una entrada
+HECHO: Borrado de un comentario existente en una entrada

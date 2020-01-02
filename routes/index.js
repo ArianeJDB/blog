@@ -5,11 +5,13 @@ const api = express.Router();
 const postController = require('../controlers/controller')
 
 
+
 api.get('/posts', postController.getPosts)
 api.get('/posts/:postId', postController.getOnePost)
 api.post('/posts', postController.savePost)
 api.put('/posts/:postId', postController.editPost)
 api.delete('/posts/:postId',postController.deleteOnePost)
-api.delete('/posts/:postId',postController.deleteComment)
+
+api.delete('/posts/:postId/comments/:commentId', postController.deleteComment)
 
 module.exports = api; 

@@ -68,39 +68,37 @@ function deleteOnePost (req, res) {
 
     Post.findById(postId, (err, post) => {
         if(err) res.status(500).send({message: `Error al borrar este post: ${err}`})
+                post.remove(err => {
+                if(err) res.status(500).send({message: `Error al borrar este post: ${err}`})
 
-        post.remove(err => {
-            if(err) res.status(500).send({message: `Error al borrar este post: ${err}`})
-
-            res.status(200).send({message: 'El post ha sido borrado'})
-        })
+                res.status(200).send({message: 'El post ha sido borrado'})
+            }) 
+            
     })
 }
 
-//DELETE ONE COMMENT
+
 function deleteComment (req, res) {
+
     let postId = req.params.postId
+    let commentId = req.params.commentId
 
-    Post.findOneAndUpdate(postId, { $pull: {"comments": { _id: commentId}}},(err, post) => {
-        if(err) res.status(500).send({message: `Error al borrar este post: ${err}`})
+    Post.update(
+        {_id: postId},
+        { $pull: {comments: {_id: commentId}}},
+        {multi: true},
+        (err) =>{
+            if(err) res.status(500).send({message: `Error al borrar este comentario: ${err}`})
+            res.status(200).send({message: 'El comentario ha sido borrado'})
+        }
 
-    //     post.remove(err => {
-    //         if(err) res.status(500).send({message: `Error al borrar este post: ${err}`})
-
-            res.status(200).send({message: 'El post ha sido borrado'})
-        })
-    }
-    //)
-
-    // Post.findOneAndUpdate(postId, {$pull: {comments: { _id: id }}}, function(err, data){
-    //     if(err) {
-    //         return res.status(500).json({"error":"no se pudo borrar"});
-    //     } 
-    //     res.json(data)
-    // })
+    )
      
-// }
- 
+
+
+}
+
+
 
 module.exports = {
     getPosts,
@@ -109,7 +107,5 @@ module.exports = {
     savePost,
     deleteOnePost,
     deleteComment
-    
-
     
 }

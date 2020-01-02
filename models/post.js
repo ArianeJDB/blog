@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
-
+const uuid = require('uuidv4')
 
 const Schema = mongoose.Schema;
 //const Comment = require('./comment')
@@ -9,7 +9,8 @@ const Schema = mongoose.Schema;
 const CommentSchema = new Schema({
     nickName: String,
     comment: String,
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
+    
 })
 
 
