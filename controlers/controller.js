@@ -1,6 +1,8 @@
 'use strict'
 
+//const validateComments = require('../validator.js')
 const Post = require('../models/post');
+const validator = require('../validator');
 
 
 
@@ -54,9 +56,13 @@ function editPost (req, res)  {
     let bodyUpdated = req.body;
 
     Post.findByIdAndUpdate(postId, bodyUpdated, (err, postUpdated) => {
+
         if(err) res.status(500).send({message: `Error al editar este post: ${err}`})
+       
+        bodyUpdated.comments.forEach(comment => validator(comment.comment))
 
         res.status(200).send({ post: postUpdated })
+        
     })
 }
 

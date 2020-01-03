@@ -1,4 +1,4 @@
-const defaultWords = [
+module.exports = [
     {word: 'gilipollas', level: 4},
     {word: 'puta', level: 5},
     {word: 'tonto', level: 2},
@@ -6,4 +6,4 @@ const defaultWords = [
 
 ]
 
-module.exports = {defaultWords}
+// module.exports = {defaultWords}

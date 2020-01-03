@@ -1,16 +1,22 @@
 'use strict'
 
 
-const defaultWords = require('./defaultWords')
+// const defaultWords = require('./defaultWords')
+const defaultWords = require('./defaultWords');
 
-function no(){
+module.exports = (comment) => {
+    //console.log('LLEGAAAA',comment)
+    // defaultWords.forEach(word => console.log(word))
+
     defaultWords.forEach((word)=>{
-        const is = comment.includes(word.word);
+        const isIncluded = comment.includes(word.word);
 
-        if(is){
-            return true
+        if(isIncluded){
+            console.log('YEAH BABY')
+        }else{
+            console.log('NOBABYYY')
         }
     })
 }
 
-module.exports={no}
+//exports.validateComments = validateComments
