@@ -13,3 +13,6 @@ HECHO MEJORABLE: PUT DE LA ENTRADA, SOLO MODIFICANDO EL COMENTARIO: Adición de 
 HECHO MEJORABLE: PUT DE LA ENTRADA. Modificación de un comentario existente
 
 HECHO: Borrado de un comentario existente en una entrada
+
+006857828 mio 
+006857836 sebas

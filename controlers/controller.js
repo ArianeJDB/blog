@@ -58,8 +58,13 @@ function editPost (req, res)  {
     Post.findByIdAndUpdate(postId, bodyUpdated, (err, postUpdated) => {
 
         if(err) res.status(500).send({message: `Error al editar este post: ${err}`})
-       
+        
         bodyUpdated.comments.forEach(comment => validator(comment.comment))
+        
+        if(validator){
+            console.log('algoppooooo')
+            res.status(500).send({message: `No puedes incluir palabras ofensivas en el comentario: ${err}`})
+        }
 
         res.status(200).send({ post: postUpdated })
         
@@ -99,7 +104,7 @@ function deleteComment (req, res) {
     )
      
 
-
+ 
 }
 
 
