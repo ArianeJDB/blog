@@ -1,21 +1,18 @@
 'use strict'
 
-
-// const defaultWords = require('./defaultWords')
 const defaultWords = require('./defaultWords');
-const editPost = require('./controlers/controller')
 
 module.exports = (comment) => {
 
+    let isIncluded = false
 
-    defaultWords.forEach((word)=>{
-        const isIncluded = comment.includes(word.word);
-       if(isIncluded){
-           return true
-       }
-        
-        
+    defaultWords.forEach((word) => {
+
+        if (comment.includes(word.word)) {
+            isIncluded = true
+        }
     })
-}
 
-//exports.validateComments = validateComments
+    return isIncluded;
+
+}

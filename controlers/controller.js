@@ -1,10 +1,7 @@
 'use strict'
 
-//const validateComments = require('../validator.js')
 const Post = require('../models/post');
 const validator = require('../validator');
-
-
 
 function getPosts (req, res) {
     Post.find({}, {comments:0}, (err, posts) => {
@@ -30,17 +27,13 @@ function getOnePost (req, res) {
 
 
 //POST NEW ENTIRE POST SIN COMENTARIOS
-function savePost (req, res) {
-   
-    // console.log('REQ.BODY---------------->',req.body);
+function addNewPost (req, res) {
 
     let post = new Post();
     post.userName = req.body.userName;
     post.nickName = req.body.nickName;
     post.title = req.body.title;
     post.text = req.body.text;
-    post.comments = req.body.comments
-    
 
     post.save((err, post) => {
         if(err) res.status(500).send({message: `Error al enviar post: &{err}`})
@@ -50,24 +43,30 @@ function savePost (req, res) {
 }
 
 
-function editPost (req, res)  {
-    //edit title and text
+function editPost (req, res) {
     let postId = req.params.postId;
     let bodyUpdated = req.body;
-
+    
     Post.findByIdAndUpdate(postId, bodyUpdated, (err, postUpdated) => {
 
-        if(err) res.status(500).send({message: `Error al editar este post: ${err}`})
-        
-        bodyUpdated.comments.forEach(comment => validator(comment.comment))
-        
-        if(validator){
-            console.log('algoppooooo')
-            res.status(500).send({message: `No puedes incluir palabras ofensivas en el comentario: ${err}`})
+        if(err){
+            res.status(500).send({message: `Error al editar este post: ${err}`})
         }
-
-        res.status(200).send({ post: postUpdated })
         
+        if(bodyUpdated.comments === undefined){
+            res.status(200).send({ post: postUpdated }) 
+        }else{
+            bodyUpdated.comments.forEach(comment => {
+                const isValid = validator(comment.comment)
+
+                if(isValid){
+                    res.status(400).send({message: 'No puedes hacer comentarios con las siguientes palabras: '})
+                }else{
+                    res.status(200).send({ post: postUpdated })
+                }
+             }
+             )   
+        }
     })
 }
 
@@ -113,7 +112,7 @@ module.exports = {
     getPosts,
     getOnePost,
     editPost,
-    savePost,
+    addNewPost,
     deleteOnePost,
     deleteComment
     
