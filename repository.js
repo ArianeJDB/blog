@@ -5,7 +5,7 @@ const app = require('./app.js');
 const fs = require('fs');
 const https = require('https');
 
-mongoose.connect('mongodb://localhost:27017/blog', (err, res) => {
+mongoose.connect('mongodb://localhost:27017/blog', { useNewUrlParser: true, useUnifiedTopology: true },(err, res) => {
     if(err) {
         return console.log(`ERROR al conectar a la DDBB: ${err}`)
     }

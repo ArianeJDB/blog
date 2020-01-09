@@ -2,15 +2,16 @@
 
 const express = require('express');
 const bodyParser =  require('body-parser'); //parsearlo y tratarloomo un obj json deuna vez
-const app = express();  
-const blog = require('./routes/postsRoute')
-const words = require('./routes/wordsRoute')
-
 const passport = require('passport');
 const BasicStrategy = require('passport-http').BasicStrategy;
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const jwt = require("jsonwebtoken");
+
+const blog = require('./routes/postsRoute')
+const words = require('./routes/wordsRoute')
+
+const app = express();
 
 const SECRET_KEY = "SECRET_KEY" //normally store this in process.env.secret
 
