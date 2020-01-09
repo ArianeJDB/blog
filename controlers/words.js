@@ -1,7 +1,7 @@
 'use strict'
 
 const Words = require('../models/words');
-const defaultWords = require('../defaultWords')
+const defaultWords = require('../src/defaultWords')
 
 function createNewCollection(req, res) {
     Words.create(defaultWords, (err) => {

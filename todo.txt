@@ -8,9 +8,9 @@ HECHO: Borrado de una entrada existente (con todos sus comentarios)
 
 HECHO: Modificación de una entrada existente (se actualizará toda la información de la misma, excepto sus comentarios)
 
-HECHO MEJORABLE: PUT DE LA ENTRADA, SOLO MODIFICANDO EL COMENTARIO: Adición de un nuevo comentario a una entrada
+HECHO: Adición de un nuevo comentario a una entrada
 
-HECHO MEJORABLE: PUT DE LA ENTRADA. Modificación de un comentario existente
+HECHO: Modificación de un comentario existente
 
 HECHO: Borrado de un comentario existente en una entrada
 
@@ -23,4 +23,4 @@ HECHO Si no hay palabras ofensivas en la BBDD, insertar las por defecto
 
 HECHO Basic Auth
 
-En proceso: JWT
+HECHO: JWT

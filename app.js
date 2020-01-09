@@ -1,25 +1,24 @@
 'use strict';
 
 const express = require('express');
-const bodyParser =  require('body-parser'); //parsearlo y tratarloomo un obj json deuna vez
+const bodyParser =  require('body-parser');
 const passport = require('passport');
 const BasicStrategy = require('passport-http').BasicStrategy;
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 
-const blog = require('./routes/postsRoute')
-const words = require('./routes/wordsRoute')
+const blog = require('./routes/posts')
+const words = require('./routes/words')
+const users = require('./controlers/users');
+
+const SECRET_KEY = process.env.SECRETKEY;
 
 const app = express();
 
-const SECRET_KEY = "SECRET_KEY" //normally store this in process.env.secret
-
-const users = require('./users');
-
 async function verify(username, password, done) {
 
-    var user = await users.find(username);
+    let user = await users.find(username);
 
     if(!user){
         return done(null, false, { message: 'User not found' });
@@ -39,10 +38,10 @@ app.use(passport.initialize());
 app.post("/login", 
     passport.authenticate('basic', { session: false }),
     (req, res) => {
-    
+        
         const { username } = req.user;
 
-        const opts = { expiresIn: 600 }; //token expires in 10min
+        const opts = { expiresIn: 600 };
         const token = jwt.sign({ username }, SECRET_KEY, opts);
         
         return res.status(200).json({ message: "Auth Passed", token });
@@ -56,7 +55,7 @@ const jwtOpts = {
 
 passport.use(new JwtStrategy(jwtOpts, async (payload, done) => {
     
-    var user = await users.find(payload.username);
+    const user = await users.find(payload.username);
     
     if (user) {
         return done(null, user);
@@ -65,9 +64,6 @@ passport.use(new JwtStrategy(jwtOpts, async (payload, done) => {
     }
     
 }) );
-
-
-
 
 users.init();
 

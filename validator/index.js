@@ -1,21 +1,21 @@
 'use strict'
 
-const defaultWords = require('./defaultWords');
+const defaultWords = require('../src/defaultWords');
 let forbiddenWords = []
 const validator = (comment) => {
 
     let isIncluded = false;
 
     defaultWords.forEach((word) => {
-
-        if (comment.includes(word.word)) {
+        const commetToLowerCase = comment.toLowerCase();
+        if (commetToLowerCase.includes(word.word)) {
             
             forbiddenWords.push(word)
             
             isIncluded = true
         }
     })
-//console.log('qqqqqqqq',forbiddenWords)
+
     return isIncluded;
 
 }

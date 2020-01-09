@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "nodemon repository.js",
+    "start": "nodemon services/repository.js",
     "test": "jest"
   },
   "repository": {

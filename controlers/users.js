@@ -6,15 +6,14 @@ const bcrypt = require('bcrypt');
 let User;
 
 async function createSampleUsers() {
-    await addUser('user1', 'pass1');
-    await addUser('user2', 'pass2');
-    await addUser('user3', 'pass3');
+    await addUser('paquita', 'salas');
+    
 }
 
 async function addUser(username, password) {
     const passwordHash = await bcrypt.hash(password, bcrypt.genSaltSync(8), null);
 
-    const user = await User.findOne({ username }).exec();
+    let user = await User.findOne({ username }).exec();
 
     if(!user){
         user = new User({ username, passwordHash });
