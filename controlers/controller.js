@@ -1,14 +1,12 @@
 'use strict'
 
-// const passport = require('passport');
 const Post = require('../models/post');
 const validator = require('../validator');
 const forbiddenWords = require('../validator');
 
-//let comment;
 
 function getPosts(req, res) {
-
+    console.log('logged user', req.user);
     Post.find({}, { comments: 0 }, (err, posts) => {
 
         if (err) return res.status(500).send({ message: `Error al hacer la petición: ${err}` })
@@ -57,22 +55,7 @@ function editPost(req, res) {
         if (err) {
             res.status(500).send({ message: `Error al editar este post: ${err}` })
         }
-
-        if (bodyUpdated.comments === undefined) {
-            res.status(200).send({ post: postUpdated })
-        } else {
-            // bodyUpdated.comments.forEach(comment => {
-            //     const isValid = validator.validator(comment.comment)
-
-            //     if (isValid) {
-            //         console.log('forbiddenWords',validator.forbiddenWords)
-            //         res.status(400).send({ message: `No puedes hacer comentarios con palabras ofensivas`, forbiddenWords})
-            //     } else {
-            //         res.status(200).send({ post: postUpdated })
-            //     }
-            // }
-            // )
-        }
+        res.status(200).send({ post: postUpdated })
     })
 }
 
@@ -131,10 +114,6 @@ function addComment(req, res) {
         }
     }
     )
-
-
-
-
 }
 
 function editComment(req, res) {

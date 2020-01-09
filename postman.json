@@ -7,20 +7,58 @@
 	"item": [
 		{
 			"name": "blogGET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "pass1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user1",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "userName",
+						"value": "user1",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "pass1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
 				"url": {
-					"raw": "http://localhost:3000/blog/posts/",
-					"protocol": "http",
+					"raw": "https://localhost:3443/blog/posts",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3443",
 					"path": [
 						"blog",
-						"posts",
-						""
+						"posts"
 					]
 				},
 				"description": "Recupera todas las entradas sin sus comentarios"
@@ -44,22 +82,22 @@
 					"urlencoded": [
 						{
 							"key": "userName",
-							"value": "1",
+							"value": "6",
 							"type": "text"
 						},
 						{
 							"key": "title",
-							"value": "1",
+							"value": "16",
 							"type": "text"
 						},
 						{
 							"key": "text",
-							"value": "1",
+							"value": "16",
 							"type": "text"
 						},
 						{
 							"key": "nickName",
-							"value": "1",
+							"value": "16",
 							"type": "text"
 						},
 						{
@@ -76,12 +114,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/blog/posts/",
-					"protocol": "http",
+					"raw": "https://localhost:3443/blog/posts/",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3443",
 					"path": [
 						"blog",
 						"posts",
@@ -97,16 +135,16 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/blog/posts/5e05ffb0275efc3ea4c9c56e",
-					"protocol": "http",
+					"raw": "https://localhost:3443/blog/posts/5e0e2133e6fe5f361503a746",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3443",
 					"path": [
 						"blog",
 						"posts",
-						"5e05ffb0275efc3ea4c9c56e"
+						"5e0e2133e6fe5f361503a746"
 					]
 				}
 			},
@@ -140,16 +178,16 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/blog/posts/5e05ffb0275efc3ea4c9c56e",
-					"protocol": "http",
+					"raw": "https://localhost:3443/blog/posts/5e0e2133e6fe5f361503a746",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3443",
 					"path": [
 						"blog",
 						"posts",
-						"5e05ffb0275efc3ea4c9c56e"
+						"5e0e2133e6fe5f361503a746"
 					]
 				}
 			},
@@ -161,16 +199,16 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/blog/posts/5e0e1f43f775ed334c8a5f20",
-					"protocol": "http",
+					"raw": "https://localhost:3443/blog/posts/5e0f07089ea40c662bccb714",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3443",
 					"path": [
 						"blog",
 						"posts",
-						"5e0e1f43f775ed334c8a5f20"
+						"5e0f07089ea40c662bccb714"
 					]
 				}
 			},
@@ -182,16 +220,16 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/blog/posts/5e05ffb0275efc3ea4c9c56e",
-					"protocol": "http",
+					"raw": "https://localhost:3443/blog/posts/5e0e2133e6fe5f361503a746",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3443",
 					"path": [
 						"blog",
 						"posts",
-						"5e05ffb0275efc3ea4c9c56e"
+						"5e0e2133e6fe5f361503a746"
 					]
 				}
 			},
@@ -203,18 +241,18 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/posts/5e05ffb0275efc3ea4c9c56e/comments/5e05ffba275efc3ea4c9c56f",
-					"protocol": "http",
+					"raw": "https://localhost:3443/blog/posts/5e0e2133e6fe5f361503a746/comments/5e171971893813362f946ade",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3443",
 					"path": [
-						"api",
+						"blog",
 						"posts",
-						"5e05ffb0275efc3ea4c9c56e",
+						"5e0e2133e6fe5f361503a746",
 						"comments",
-						"5e05ffba275efc3ea4c9c56f"
+						"5e171971893813362f946ade"
 					]
 				}
 			},
@@ -234,7 +272,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \n        \"comments\": [\n        \t\t{\n        \t\t\t\"nickName\": \"pin\",\n        \t\t\t\"comment\": \"este es un comentario con push\"\n        \t\t}\n        \t]\n    }",
+					"raw": "{\n        \n        \"comments\": [\n        \t\t{\n        \t\t\t\"nickName\": \"pan\",\n        \t\t\t\"comment\": \"hola\"\n        \t\t}\n        \t]\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -242,16 +280,16 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/blog/posts/5e1485e2953d80098cf62a2f",
-					"protocol": "http",
+					"raw": "https://localhost:3443/blog/posts/5e0e2133e6fe5f361503a746",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3443",
 					"path": [
 						"blog",
 						"posts",
-						"5e1485e2953d80098cf62a2f"
+						"5e0e2133e6fe5f361503a746"
 					]
 				}
 			},
@@ -271,7 +309,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \n        \"comments\": [\n        \t\t{\n        \t\t\t\"nickName\": \"pin\",\n        \t\t\t\"comment\": \"este es un comentario  EDITADO con set\"\n        \t\t}\n        \t]\n    }",
+					"raw": "{\n        \n        \"comments\": [\n        \t\t{\n        \t\t\t\"nickName\": \"pin\",\n        \t\t\t\"comment\": \"este es un comentario  EDITADO\"\n        \t\t}\n        \t]\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -279,18 +317,18 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/blog/posts/5e1485e2953d80098cf62a2f/comments/5e16fc5b2329a323e8bd6c28",
-					"protocol": "http",
+					"raw": "https://localhost:3443/blog/posts/5e0e2133e6fe5f361503a746/comments/5e14931f237f08151e41994c",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3443",
 					"path": [
 						"blog",
 						"posts",
-						"5e1485e2953d80098cf62a2f",
+						"5e0e2133e6fe5f361503a746",
 						"comments",
-						"5e16fc5b2329a323e8bd6c28"
+						"5e14931f237f08151e41994c"
 					]
 				}
 			},

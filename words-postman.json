@@ -22,25 +22,23 @@
 					"urlencoded": [
 						{
 							"key": "word",
-							"value": "o",
-							"type": "text",
-							"disabled": true
+							"value": "cabrón",
+							"type": "text"
 						},
 						{
 							"key": "level",
-							"value": "2",
-							"type": "text",
-							"disabled": true
+							"value": "4",
+							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/words/",
-					"protocol": "http",
+					"raw": "https://localhost:3443/words/",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3443",
 					"path": [
 						"words",
 						""
@@ -55,12 +53,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/words/",
-					"protocol": "http",
+					"raw": "https://localhost:3443/words/",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3443",
 					"path": [
 						"words",
 						""
@@ -86,26 +84,26 @@
 					"urlencoded": [
 						{
 							"key": "word",
-							"value": "vergación",
+							"value": "mierda",
 							"type": "text"
 						},
 						{
 							"key": "level",
-							"value": "4",
+							"value": "3",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/words/5e0e33e6c302b54e59fe8c0b",
-					"protocol": "http",
+					"raw": "https://localhost:3443/words/5e171a93893813362f946ae0",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3443",
 					"path": [
 						"words",
-						"5e0e33e6c302b54e59fe8c0b"
+						"5e171a93893813362f946ae0"
 					]
 				}
 			},
@@ -117,12 +115,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/words/5e0e35e831d95e5071f6129a",
-					"protocol": "http",
+					"raw": "https://localhost:3443/words/5e0e35e831d95e5071f6129a",
+					"protocol": "https",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3443",
 					"path": [
 						"words",
 						"5e0e35e831d95e5071f6129a"
