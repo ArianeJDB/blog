@@ -93,8 +93,9 @@ function deleteComment(req, res) {
 function addComment(req, res) {
     let postId = req.params.postId
     let comment = req.body.comments
-
+    
     comment.forEach(item => {
+        const nickname = item.nickName;
         const isValid = validator.validator(item.comment)
 
         if (isValid) {
@@ -103,7 +104,7 @@ function addComment(req, res) {
             Post.updateOne(
 
                 { _id: postId },
-                { $push: { comments: comment } },
+                { $push: { comments: comment, nickname } },
                 { multi: true },
                 (err) => {
                     if (err) res.status(500).send({ message: `Error al añadir este comentario: ${err}` })
@@ -121,6 +122,7 @@ function editComment(req, res) {
     let comment = req.body.comments
 
     comment.forEach(item => {
+        const nickname = item.nickName;
         const isValid = validator.validator(item.comment)
 
         if (isValid) {
@@ -129,7 +131,7 @@ function editComment(req, res) {
 
             Post.updateOne(
                 { _id: postId, 'comments._id': commentId },
-                { $set: { 'comments.$': comment } }, function (err) {
+                { $set: { 'comments.$': comment, nickname } }, function (err) {
                     if (err) res.status(500).send({ message: `Error al editar este comentario: ${err}` })
                     res.status(200).send({ message: 'El comentario ha sido editado' })
 

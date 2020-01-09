@@ -3,7 +3,9 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-let User;
+const User = require('../models/users');
+
+//let User;
 
 async function createSampleUsers() {
     await addUser('paquita', 'salas');
@@ -26,11 +28,11 @@ async function addUser(username, password) {
 
 exports.init = async function() {
    
-    User = mongoose.model('User', new mongoose.Schema({
-        username: String,
-        passwordHash: String
-    }));
-
+    // User = mongoose.model('User', new mongoose.Schema({
+    //     username: String,
+    //     passwordHash: String
+    // }));
+    
     createSampleUsers();
 }
 
