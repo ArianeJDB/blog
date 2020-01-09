@@ -10,6 +10,7 @@ const jwt = require('jsonwebtoken');
 
 const blog = require('./routes/posts')
 const words = require('./routes/words')
+const login = require('./routes/login')
 const users = require('./controlers/users');
 
 const SECRET_KEY = process.env.SECRETKEY;
@@ -35,18 +36,18 @@ passport.use(new BasicStrategy(verify));
 
 app.use(passport.initialize());
 
-app.post("/login", 
-    passport.authenticate('basic', { session: false }),
-    (req, res) => {
+// app.post("/login", 
+//     passport.authenticate('basic', { session: false }),
+//     (req, res) => {
         
-        const { username } = req.user;
+//         const { username } = req.user;
 
-        const opts = { expiresIn: 600 };
-        const token = jwt.sign({ username }, SECRET_KEY, opts);
+//         const opts = { expiresIn: 600 };
+//         const token = jwt.sign({ username }, SECRET_KEY, opts);
         
-        return res.status(200).json({ message: "Auth Passed", token });
+//         return res.status(200).json({ message: "Auth Passed", token });
 
-});
+// });
 
 const jwtOpts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -72,5 +73,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/blog', blog)
 app.use('/words', words)
+app.use('/login', login)
 
 module.exports = app; 
