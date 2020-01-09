@@ -15,5 +15,4 @@ words.put('/:id', wordsController.editWord)
 
 words.delete('/:id',wordsController.deleteWord)
 
-
 module.exports = words; 

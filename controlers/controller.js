@@ -1,10 +1,12 @@
 'use strict'
 
+// const passport = require('passport');
 const Post = require('../models/post');
 const validator = require('../validator');
 const forbiddenWords = require('../validator');
 
-function getPosts(req, res) {
+function getPosts (req, res) {
+    
     Post.find({}, { comments: 0 }, (err, posts) => {
 
         if (err) return res.status(500).send({ message: `Error al hacer la petición: ${err}` })
@@ -93,7 +95,7 @@ function deleteComment(req, res) {
     let postId = req.params.postId
     let commentId = req.params.commentId
 
-    Post.update(
+    Post.updateOne(
         { _id: postId },
         { $pull: { comments: { _id: commentId } } },
         { multi: true },
@@ -104,12 +106,48 @@ function deleteComment(req, res) {
     )
 }
 
+function addComment(req, res) {
+    let postId = req.params.postId
+    let comment = {comment: 'esto es un comentario mal sin fecha porque la fecha la pone el schema de mongoose'}
+
+
+    Post.updateOne(
+        { _id: postId },
+        { $push: { comments: comment } },
+        { multi: true },
+        (err) => {
+            if (err) res.status(500).send({ message: `Error al añadir este comentario: ${err}` })
+            res.status(200).send({ message: 'El comentario ha sido añadido' })
+        }
+    )
+}
+
+function editComment(req, res) {
+    console.log('me ejectuto?????')
+    let postId = req.params.postId
+    let commentId = req.params.commentId
+    let commentEdited = {comment: 'EDITADO'}
+
+
+
+    Post.updateOne(
+        { _id: postId, 'comments._id':commentId }, 
+        { $set: {'comments.$': commentEdited} }, function(err) {
+        if (err) res.status(500).send({ message: `Error al editar este comentario: ${err}` })
+        res.status(200).send({ message: 'El comentario ha sido editado' })
+        
+})
+}
+
+
 module.exports = {
     getPosts,
     getOnePost,
     editPost,
     addNewPost,
     deleteOnePost,
-    deleteComment
+    deleteComment,
+    addComment,
+    editComment
 
 }
