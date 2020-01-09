@@ -6,7 +6,6 @@ const forbiddenWords = require('../validator');
 
 
 function getPosts(req, res) {
-    console.log('logged user', req.user);
     Post.find({}, { comments: 0 }, (err, posts) => {
 
         if (err) return res.status(500).send({ message: `Error al hacer la petición: ${err}` })

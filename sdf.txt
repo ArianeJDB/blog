@@ -20,3 +20,7 @@ HECHO Creación, listado, borrado y modificación de una palabra ofensiva.
 HECHO validador: petición rechazada con badrequest, devuelve el json con la spalabras ofensivas incluídas
 
 HECHO Si no hay palabras ofensivas en la BBDD, insertar las por defecto
+
+HECHO Basic Auth
+
+En proceso: JWT

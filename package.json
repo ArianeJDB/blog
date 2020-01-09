@@ -2,7 +2,6 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "nodemon repository.js",
     "test": "jest"
@@ -24,9 +23,11 @@
     "fs": "0.0.1-security",
     "https": "^1.0.0",
     "jest": "^24.9.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.2",
     "passport": "^0.4.1",
     "passport-http": "^0.3.0",
+    "passport-jwt": "^4.0.0",
     "uuid": "^3.3.3",
     "uuidv4": "^6.0.0"
   },

@@ -2,11 +2,11 @@
 
 const express = require('express');
 const blog = express.Router();
-const postController = require('../controlers/controller')
+const postController = require('../controlers/postsController')
 const passport = require('passport');
 
 
-blog.get('/posts', passport.authenticate('basic', { session: false }), postController.getPosts)
+blog.get('/posts', passport.authenticate('jwt', { session: false }), postController.getPosts)
 blog.get('/posts/:postId', postController.getOnePost)
 blog.post('/posts', postController.addNewPost)
 blog.put('/posts/:postId', postController.editPost)
