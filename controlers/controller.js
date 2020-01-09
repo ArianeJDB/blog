@@ -5,8 +5,10 @@ const Post = require('../models/post');
 const validator = require('../validator');
 const forbiddenWords = require('../validator');
 
-function getPosts (req, res) {
-    
+//let comment;
+
+function getPosts(req, res) {
+
     Post.find({}, { comments: 0 }, (err, posts) => {
 
         if (err) return res.status(500).send({ message: `Error al hacer la petición: ${err}` })
@@ -29,7 +31,6 @@ function getOnePost(req, res) {
 }
 
 
-//POST NEW ENTIRE POST SIN COMENTARIOS
 function addNewPost(req, res) {
 
     let post = new Post();
@@ -47,10 +48,10 @@ function addNewPost(req, res) {
 
 
 function editPost(req, res) {
-    
+
     let postId = req.params.postId;
     let bodyUpdated = req.body;
-    
+
     Post.findByIdAndUpdate(postId, bodyUpdated, (err, postUpdated) => {
 
         if (err) {
@@ -60,17 +61,17 @@ function editPost(req, res) {
         if (bodyUpdated.comments === undefined) {
             res.status(200).send({ post: postUpdated })
         } else {
-            bodyUpdated.comments.forEach(comment => {
-                const isValid = validator.validator(comment.comment)
+            // bodyUpdated.comments.forEach(comment => {
+            //     const isValid = validator.validator(comment.comment)
 
-                if (isValid) {
-                    console.log('forbiddenWords',validator.forbiddenWords)
-                    res.status(400).send({ message: `No puedes hacer comentarios con palabras ofensivas`, forbiddenWords})
-                } else {
-                    res.status(200).send({ post: postUpdated })
-                }
-            }
-            )
+            //     if (isValid) {
+            //         console.log('forbiddenWords',validator.forbiddenWords)
+            //         res.status(400).send({ message: `No puedes hacer comentarios con palabras ofensivas`, forbiddenWords})
+            //     } else {
+            //         res.status(200).send({ post: postUpdated })
+            //     }
+            // }
+            // )
         }
     })
 }
@@ -95,6 +96,7 @@ function deleteComment(req, res) {
     let postId = req.params.postId
     let commentId = req.params.commentId
 
+
     Post.updateOne(
         { _id: postId },
         { $pull: { comments: { _id: commentId } } },
@@ -108,35 +110,55 @@ function deleteComment(req, res) {
 
 function addComment(req, res) {
     let postId = req.params.postId
-    let comment = {comment: 'esto es un comentario mal sin fecha porque la fecha la pone el schema de mongoose'}
+    let comment = req.body.comments
 
+    comment.forEach(item => {
+        const isValid = validator.validator(item.comment)
 
-    Post.updateOne(
-        { _id: postId },
-        { $push: { comments: comment } },
-        { multi: true },
-        (err) => {
-            if (err) res.status(500).send({ message: `Error al añadir este comentario: ${err}` })
-            res.status(200).send({ message: 'El comentario ha sido añadido' })
+        if (isValid) {
+            res.status(400).send({ message: `No puedes hacer comentarios con palabras ofensivas`, forbiddenWords })
+        } else {
+            Post.updateOne(
+
+                { _id: postId },
+                { $push: { comments: comment } },
+                { multi: true },
+                (err) => {
+                    if (err) res.status(500).send({ message: `Error al añadir este comentario: ${err}` })
+                    res.status(200).send({ post: comment })
+                }
+            )
         }
+    }
     )
+
+
+
+
 }
 
 function editComment(req, res) {
-    console.log('me ejectuto?????')
     let postId = req.params.postId
     let commentId = req.params.commentId
-    let commentEdited = {comment: 'EDITADO'}
+    let comment = req.body.comments
 
+    comment.forEach(item => {
+        const isValid = validator.validator(item.comment)
 
+        if (isValid) {
+            res.status(400).send({ message: `No puedes hacer comentarios con palabras ofensivas`, forbiddenWords })
+        } else {
 
-    Post.updateOne(
-        { _id: postId, 'comments._id':commentId }, 
-        { $set: {'comments.$': commentEdited} }, function(err) {
-        if (err) res.status(500).send({ message: `Error al editar este comentario: ${err}` })
-        res.status(200).send({ message: 'El comentario ha sido editado' })
-        
-})
+            Post.updateOne(
+                { _id: postId, 'comments._id': commentId },
+                { $set: { 'comments.$': comment } }, function (err) {
+                    if (err) res.status(500).send({ message: `Error al editar este comentario: ${err}` })
+                    res.status(200).send({ message: 'El comentario ha sido editado' })
+
+                }
+            )
+        }
+    })
 }
 
 

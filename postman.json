@@ -198,43 +198,6 @@
 			"response": []
 		},
 		{
-			"name": "blog PUT add comments",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n        \n        \"comments\": [\n        \t\t{\n        \t\t\t\"nickName\": \"pin\",\n        \t\t\t\"comment\": \"primer comentario\"\n        \t\t},\n        \t\t{\n        \t\t\t\"nickName\": \"pon\",\n        \t\t\t\"comment\": \"otro comentario\"\n        \t\t}\n        \t]\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/blog/posts/5e0e2133e6fe5f361503a746",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"blog",
-						"posts",
-						"5e0e2133e6fe5f361503a746"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "DELETE COMMENT",
 			"request": {
 				"method": "DELETE",
@@ -258,7 +221,44 @@
 			"response": []
 		},
 		{
-			"name": "PUT edit comment",
+			"name": "POST push new comment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \n        \"comments\": [\n        \t\t{\n        \t\t\t\"nickName\": \"pin\",\n        \t\t\t\"comment\": \"este es un comentario con push\"\n        \t\t}\n        \t]\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/blog/posts/5e1485e2953d80098cf62a2f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"blog",
+						"posts",
+						"5e1485e2953d80098cf62a2f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EDIT set comment",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -271,7 +271,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \n        \"comments\": [\n        \t\t{\n        \t\t\t\"nickName\": \"pinMODIF\",\n        \t\t\t\"comment\": \"primer comentario MODIF\"\n        \t\t},\n        \t\t{\n        \t\t\t\"nickName\": \"pon\",\n        \t\t\t\"comment\": \"otro comentario MODIF\"\n        \t\t}\n        \t]\n    }",
+					"raw": "{\n        \n        \"comments\": [\n        \t\t{\n        \t\t\t\"nickName\": \"pin\",\n        \t\t\t\"comment\": \"este es un comentario  EDITADO con set\"\n        \t\t}\n        \t]\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -279,7 +279,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/blog/posts/5e05ffb0275efc3ea4c9c56e",
+					"raw": "http://localhost:3000/blog/posts/5e1485e2953d80098cf62a2f/comments/5e16fc5b2329a323e8bd6c28",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -288,7 +288,9 @@
 					"path": [
 						"blog",
 						"posts",
-						"5e05ffb0275efc3ea4c9c56e"
+						"5e1485e2953d80098cf62a2f",
+						"comments",
+						"5e16fc5b2329a323e8bd6c28"
 					]
 				}
 			},
