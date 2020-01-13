@@ -24,3 +24,5 @@ HECHO Si no hay palabras ofensivas en la BBDD, insertar las por defecto
 HECHO Basic Auth
 
 HECHO: JWT
+
+load_admin

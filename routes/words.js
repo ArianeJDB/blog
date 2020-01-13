@@ -2,7 +2,7 @@
 
 const express = require('express');
 const words = express.Router();
-const wordsController = require('../controlers/words')
+const wordsController = require('../controllers/words')
 
 
 // words.post('/', wordsController.createNewCollection)

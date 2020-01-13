@@ -11,9 +11,11 @@ const jwt = require('jsonwebtoken');
 const blog = require('./routes/posts')
 const words = require('./routes/words')
 const login = require('./routes/login')
-const users = require('./controlers/users');
+const register = require('./routes/register')
+const users = require('./controllers/users');
 
-const SECRET_KEY = process.env.SECRETKEY;
+// const SECRET_KEY = process.env.SECRETKEY;
+const SECRET_KEY = 'SECRET_KEY'
 
 const app = express();
 
@@ -74,5 +76,6 @@ app.use(bodyParser.json())
 app.use('/blog', blog)
 app.use('/words', words)
 app.use('/login', login)
+app.use('/register', register)
 
 module.exports = app; 

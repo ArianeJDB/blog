@@ -2,7 +2,7 @@
 
 const express = require('express');
 const blog = express.Router();
-const postController = require('../controlers/posts')
+const postController = require('../controllers/posts')
 const passport = require('passport');
 
 
