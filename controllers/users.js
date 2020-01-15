@@ -4,6 +4,9 @@ const bcrypt = require('bcrypt');
 
 const User = require('../models/users');
 const Register = require('../models/register')
+const Admin = require('../models/admins')
+
+const admins = require('../admins')
 
 async function createNewUser(req, res) {
 //registration
@@ -24,16 +27,16 @@ async function createNewUser(req, res) {
     await addUser(register.username, register.password)
 
 }
-
+addUser(admins.username, admins.password)
 //login
 async function addUser(username, password) {
-
+console.log('ADDUSER')
     const passwordHash = await bcrypt.hash(password, bcrypt.genSaltSync(8), null);
 
     let user = await User.findOne({ username }).exec();
 
     if (!user) {
-        user = new User({ username, passwordHash });
+        user = new User({ username, passwordHash});
     } else {
         user.passwordHash = passwordHash;
     }
@@ -58,6 +61,7 @@ module.exports = {
     verifyPassword,
     find,
     // init,
-    addUser,
-    createNewUser
+    //addUser,
+    createNewUser,
+    // addAdmin
 }

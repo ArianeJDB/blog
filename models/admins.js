@@ -3,11 +3,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-    const AdminSchema = new Schema({
-        username: String,
-        nickname: String,
-        rol: String,
-        password: String
-    });
+const AdminSchema = new Schema({
+    username: String,
+    nickname: String,
+    passwordHash: String,
+    rol: String
+});
 
-    module.exports = mongoose.model('Admin', AdminSchema)
+module.exports = mongoose.model('Admin', AdminSchema)
