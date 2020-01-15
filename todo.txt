@@ -25,7 +25,20 @@ HECHO Basic Auth
 
 HECHO: JWT
 
-load_admin
+HECHO: cargar admins al arrancar
+
+HECHO users AUTH
+REVISAR EN POSTMAN: admins pueden hacer todas las acciones
+HECHO publisher creaar entrada
+HECHO publisher delete HIS post
+HECHO Publisher edit HIS post
+HECHO Borrar comentarios de sus entradas.
+HECHO todo publisher puede añadir comentarios a todas las entradas.
+
+HECHO: No autenticado: solo get y get one
+
+HECHO usuarios registrados como publisher
+
 
 
 
