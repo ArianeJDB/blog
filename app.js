@@ -13,6 +13,7 @@ const words = require('./routes/words')
 const login = require('./routes/login')
 const register = require('./routes/register')
 const admins = require('./routes/admins')
+
 const users = require('./controllers/users');
 
 
@@ -24,7 +25,6 @@ const app = express();
 async function verify(username, password, done) {
 
     let user = await users.find(username);
-
     if(!user){
         return done(null, false, { message: 'User not found' });
     }
@@ -46,9 +46,8 @@ const jwtOpts = {
 }
 
 passport.use(new JwtStrategy(jwtOpts, async (payload, done) => {
-    
+        
     const user = await users.find(payload.username);
-    
     if (user) {
         return done(null, user);
     } else {

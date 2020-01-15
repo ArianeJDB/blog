@@ -7,7 +7,7 @@ const AdminSchema = new Schema({
     username: String,
     nickname: String,
     passwordHash: String,
-    rol: String
+    role: String
 });
 
 module.exports = mongoose.model('Admin', AdminSchema)

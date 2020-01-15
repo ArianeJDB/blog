@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema({
-    nickName: String,
+    nickname: String,
+    username: String,
     comment: String,
     date: { type: Date, default: Date.now },
     

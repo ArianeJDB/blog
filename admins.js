@@ -4,7 +4,7 @@ const admins = {
     "username": "ari",
     "nickname": "chupi",
     "password": "ane",
-    "rol": "admin"
+    "role": "admin"
 }
 
 

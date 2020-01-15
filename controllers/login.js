@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const SECRET_KEY = 'SECRET_KEY'
 
 module.exports = function login(req, res) {
-    console.log('req',req.user)
+    //req.user es el user de app
     const { username } = req.user;
 
     const opts = { expiresIn: 600 };

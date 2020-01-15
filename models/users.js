@@ -8,7 +8,7 @@ const UserSchema = new Schema({
     username: String,
     nickname: String,
     passwordHash: String,
-    rol: String
+    role: String
 
 })
 
