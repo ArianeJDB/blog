@@ -2,7 +2,8 @@
 
 const jwt = require('jsonwebtoken');
 
-const SECRET_KEY = process.env.SECRETKEY;
+// const SECRET_KEY = process.env.SECRETKEY;
+const SECRET_KEY = 'SECRET_KEY'
 
 module.exports = function login(req, res) {
     const { username } = req.user;

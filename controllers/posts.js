@@ -31,8 +31,8 @@ function getOnePost(req, res) {
 function addNewPost(req, res) {
 
     let post = new Post();
-    post.userName = req.body.userName;
-    post.nickName = req.body.nickName;
+    post.username = req.body.username;
+    post.nickname = req.body.nickname;
     post.title = req.body.title;
     post.text = req.body.text;
 

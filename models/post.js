@@ -13,8 +13,8 @@ const CommentSchema = new Schema({
 
 
 const PostSchema = new Schema({
-    userName: String,
-    nickName: String,
+    username: String,
+    nickname: String,
     title: String,
     text: String,
     comments: [CommentSchema]

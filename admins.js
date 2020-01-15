@@ -1,13 +1,11 @@
 'use strict';
 
-const admins = [{
-    "username": "paquita",
-    "password": "salas",
+const admins = {
+    "username": "ari",
+    "nickname": "chupi",
+    "password": "ane",
     "rol": "admin"
+}
 
-},
-{"username": "ari",
-"password": "ane",
-"rol": "admin"}]
 
 module.exports = admins;
