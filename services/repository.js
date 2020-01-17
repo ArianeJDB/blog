@@ -18,12 +18,7 @@ mongoose.connect('mongodb://localhost:27017/blog', {
     }
     console.log('API REST Conectada a la DDBB')
 
-    https.createServer({
-        key: fs.readFileSync('server.key'),
-        cert: fs.readFileSync('server.cert')
-    }, app).listen(3443, () => {
-        console.log('CONECTADO a https 3443')
-    })
+
     
     admins.getAdmins();
 
@@ -32,3 +27,10 @@ mongoose.connect('mongodb://localhost:27017/blog', {
     // })
 })
  
+
+    https.createServer({
+        key: fs.readFileSync('server.key'),
+        cert: fs.readFileSync('server.cert')
+    }, app).listen(3443, () => {
+        console.log('CONECTADO a https 3443')
+    })

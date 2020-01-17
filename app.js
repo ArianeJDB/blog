@@ -16,6 +16,7 @@ const admins = require('./routes/admins')
 
 const users = require('./controllers/users');
 
+const repository = require('./services/repository')
 
 // const SECRET_KEY = process.env.SECRETKEY;
 const SECRET_KEY = 'SECRET_KEY'
@@ -56,6 +57,8 @@ passport.use(new JwtStrategy(jwtOpts, async (payload, done) => {
     
 }) );
 
+
+
 // users.init();
 
 
@@ -68,3 +71,4 @@ app.use('/register', register)
 app.use('/admins', admins)
 
 module.exports = app; 
+// module.exports = initApp;

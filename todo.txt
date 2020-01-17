@@ -40,5 +40,5 @@ HECHO: No autenticado: solo get y get one
 HECHO usuarios registrados como publisher
 
 
-
+REGISTRO: si username ya está registrado: bad request-escoge otro nombre
 

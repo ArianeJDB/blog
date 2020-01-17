@@ -1,5 +1,5 @@
 const validator = require('../validator');
-const defaultWords = require('../defaultWords')
+const defaultWords = require('../src/defaultWords')
 
 describe('validator', () => {
     test('validates if comments has forbidden words', () => {
