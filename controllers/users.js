@@ -8,7 +8,7 @@ const Admin = require('../models/admins')
 
 const admins = require('../admins')
 
-async function createNewUser(req, res) {
+function createNewUser(req, res) {
 //registration
     let register = new Register();
     register.username = req.body.username;
@@ -23,7 +23,7 @@ async function createNewUser(req, res) {
     })
 
     res.status(200).send({ message: 'el usuario ha sido registrado', register })
-    await addUser(register.username, register.password, register.role, register.nickname)
+    addUser(register.username, register.password, register.role, register.nickname)
 
 }
 addUser(admins.username, admins.password, admins.role, admins.nickname)
@@ -42,11 +42,6 @@ async function addUser(username, password, role, nickname) {
 
     await user.save();
 }
-
-// async function init () {
-
-//    await createNewUser();
-// }
 
 async function find (username) {
     return await User.findOne({ username }).exec();

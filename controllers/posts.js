@@ -118,13 +118,13 @@ function deleteComment(req, res) {
     })
 }
 //AUTH quien sea
-async function addComment(req, res) {
+function addComment(req, res) {
 
     let postId = req.params.postId
     let comment = req.body.comments
 
 
-    await comment.forEach(item => {
+    comment.forEach(item => {
         let username = req.user.username;
         let nickname = req.user.nickname;
         item.nickname = nickname;

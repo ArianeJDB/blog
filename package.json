@@ -6,6 +6,9 @@
     "start": "nodemon services/repository.js",
     "test": "jest"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ArianeJDB/blog.git"
@@ -19,6 +22,7 @@
   "dependencies": {
     "bcrypt": "^3.0.7",
     "body-parser": "^1.19.0",
+    "env-cmd": "^10.0.1",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "https": "^1.0.0",
@@ -28,7 +32,6 @@
     "passport": "^0.4.1",
     "passport-http": "^0.3.0",
     "passport-jwt": "^4.0.0"
-
   },
   "devDependencies": {
     "nodemon": "^2.0.2",

@@ -1,34 +1,26 @@
 /**
- * @jest-environment jsdom
+ * @jest-environment node
  */
 
-const app = require('../appserver')
+const app = require('../app')
 const supertest = require('supertest')
 
-const request = supertest(app)
+let request;
 
-test('when get all ads then get test adds', async () => {
-    
-    
+beforeAll(() => {
+    request = supertest(app);
+});
 
-})
+test('when create new POST then canT', async (done) => {
+    var newPost = {
+        title: 'Learn About Something',
+        text: 'Lets learn guys. Im going to explain you how.'
+    };
 
-test('when get all ads then get test adds', async () => {
- 
-    const response = await request.get('/posts')
-        // .expect('Content-type', /json/)
-        .expect(200)
+    const { body } = await request.post('/blog/posts')
+        .send(newPost)
+        .expect(401)
 
-    // expect(body[0].username).toBeTruthy();
-    // expect(body[0].nickname).toBeTruthy();
-    // expect(body[0].title).toBeTruthy();
-    // expect(body[0].text).toBeTruthy();
-    // expect(body[0]._id).toBeTruthy();
- 
+    done();
 
-})
-
-
-module.exports = {
-    testEnvironment: 'node'
-  };
+});
