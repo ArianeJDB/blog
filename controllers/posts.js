@@ -14,7 +14,15 @@ function getPosts(req, res) {
         res.status(200).send({ posts })
     })
 }
+function deleteAllPosts(req, res) {
+    Post.remove({}, (err, posts) => {
 
+        if (err) return res.status(500).send({ message: `Error al hacer la petición: ${err}` })
+        if (!posts) return res.status(404).send({ message: 'no hay posts' })
+
+        res.status(200).send({ message: 'se han borrado todos los posts' })
+    })
+}
 //no auth
 function getOnePost(req, res) {
     let postId = req.params.postId
@@ -88,6 +96,7 @@ function deleteOnePost(req, res) {
 
     })
 }
+
 //AUTH admin y publisher si es suyo
 function deleteComment(req, res) {
 
@@ -133,7 +142,7 @@ function addComment(req, res) {
         const isValid = validator.validator(item.comment)
 
         if (isValid) {
-            res.status(400).send({ message: `No puedes hacer comentarios con palabras ofensivas`, forbiddenWords })
+            res.status(403).send({ message: `No puedes hacer comentarios con palabras ofensivas`, forbiddenWords })
         } else {
 
             Post.updateOne(
@@ -161,7 +170,7 @@ function editComment(req, res) {
         const isValid = validator.validator(item.comment)
 
         if (isValid) {
-            res.status(400).send({ message: `No puedes hacer comentarios con palabras ofensivas`, forbiddenWords })
+            res.status(403).send({ message: `No puedes hacer comentarios con palabras ofensivas`, forbiddenWords })
         } else {
 
             Post.updateOne(
@@ -183,6 +192,7 @@ module.exports = {
     editPost,
     addNewPost,
     deleteOnePost,
+    deleteAllPosts,
     deleteComment,
     addComment,
     editComment

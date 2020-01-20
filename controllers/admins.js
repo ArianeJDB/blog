@@ -1,7 +1,7 @@
 'use strict';
 
 const Admin = require('../models/admins')
-const admins = require('../admins')
+const admins = require('../src/admins')
 
 
 

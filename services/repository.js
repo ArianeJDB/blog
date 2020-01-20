@@ -25,6 +25,7 @@ const app = require('../app')
       
      admins.getAdmins();
 
-
+     
     })
+    
 

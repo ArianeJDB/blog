@@ -4,7 +4,8 @@ const express = require('express');
 const posts = express.Router();
 const postController = require('../controllers/posts')
 const passport = require('passport');
-const isPublisher =require('../isPublisher')
+const isPublisher =require('../src/isPublisher')
+const isAdmin = require('../src/isAdmin')
 
 
 posts.get('/posts', postController.getPosts) //sin auth
@@ -17,7 +18,7 @@ posts.put('/posts/:postId', passport.authenticate('jwt', { session: false }), is
 posts.delete('/posts/:postId',passport.authenticate('jwt', { session: false }), isPublisher, postController.deleteOnePost)
 posts.delete('/posts/:postId/comments/:commentId', passport.authenticate('jwt', { session: false }), isPublisher, postController.deleteComment)
 posts.put('/posts/:postId/comments/:commentId', passport.authenticate('jwt', { session: false }), isPublisher, postController.editComment)
-
+posts.put('/posts', passport.authenticate('jwt', { session: false }), isAdmin, postController.deleteAllPosts) //solo admin
 
 
 posts.post('/posts/:postId', passport.authenticate('jwt', { session: false }), isPublisher, postController.addComment) //auth sin validar nombre

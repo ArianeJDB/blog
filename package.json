@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "start": "nodemon services/repository.js",
-    "test": "jest"
+    "test": "jest",
+    "test:debug": "node --inspect node_modules/.bin/jest --runInBand"
   },
   "jest": {
     "testEnvironment": "node"

@@ -6,7 +6,7 @@ const User = require('../models/users');
 const Register = require('../models/register')
 const Admin = require('../models/admins')
 
-const admins = require('../admins')
+const admins = require('../src/admins')
 
 function createNewUser(req, res) {
 //registration
