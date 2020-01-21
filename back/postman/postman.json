@@ -1,0 +1,601 @@
+{
+	"info": {
+		"_postman_id": "5b4a5153-03ae-4ced-aa4f-ea32900a33d5",
+		"name": "REST API Blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "blogGET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "userName",
+						"value": "user1",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "pass1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://localhost:3443/blog/posts",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"blog",
+						"posts"
+					]
+				},
+				"description": "Recupera todas las entradas sin sus comentarios"
+			},
+			"response": []
+		},
+		{
+			"name": "blogPOST",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFyaSIsImlhdCI6MTU3OTU0NDIzMywiZXhwIjoxNTc5NTQ0ODMzfQ.-aiXEDxhsS-zkJa4wu26DL6wOVKcRPK-z44cmexoPwY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Ari",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Mi primer post",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Hola a todos, qué tal?",
+							"type": "text"
+						},
+						{
+							"key": "nickname",
+							"value": "Chupi",
+							"type": "text"
+						},
+						{
+							"key": "comments",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:3443/blog/posts/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"blog",
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "blogPUT edit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpheCIsImlhdCI6MTU3OTEwMTU2MCwiZXhwIjoxNTc5MTAyMTYwfQ.0kIo7pkSDW0fLpYyd4kTmrnbX1rKcmGXSQP8KcnNQRo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "modificado",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "modificado",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:3443/blog/posts/5e0e2133e6fe5f361503a746",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"blog",
+						"posts",
+						"5e0e2133e6fe5f361503a746"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "blogGETOne",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpheCIsImlhdCI6MTU3OTEwMTU2MCwiZXhwIjoxNTc5MTAyMTYwfQ.0kIo7pkSDW0fLpYyd4kTmrnbX1rKcmGXSQP8KcnNQRo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:3443/blog/posts/5e1f7050790a7f49be6f7a0f",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"blog",
+						"posts",
+						"5e1f7050790a7f49be6f7a0f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "blog DELETE ONE",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFyaSIsImlhdCI6MTU3OTExODc2NSwiZXhwIjoxNTc5MTE5MzY1fQ.lehYbenbyqBtnQFfLJ_qvfRU0Uj2h5AoxOiTl2wrr3E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:3443/blog/posts/5e1f7052790a7f49be6f7a12",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"blog",
+						"posts",
+						"5e1f7052790a7f49be6f7a12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "blog GETOne with comments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpheCIsImlhdCI6MTU3OTEwMTU2MCwiZXhwIjoxNTc5MTAyMTYwfQ.0kIo7pkSDW0fLpYyd4kTmrnbX1rKcmGXSQP8KcnNQRo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:3443/blog/posts/5e21fa83ec74db56ce5e75ec",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"blog",
+						"posts",
+						"5e21fa83ec74db56ce5e75ec"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "COMMENT-DELETE one comment",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:3443/blog/posts/5e0e2133e6fe5f361503a746/comments/5e171971893813362f946ade",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"blog",
+						"posts",
+						"5e0e2133e6fe5f361503a746",
+						"comments",
+						"5e171971893813362f946ade"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "COMMENT-POST push new comment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \n        \"comments\": [\n        \t\t{\n        \t\t\t\"nickname\": \"pan\",\n        \t\t\t\"comment\": \"hola\"\n        \t\t}\n        \t]\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:3443/blog/posts/5e0e2133e6fe5f361503a746",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"blog",
+						"posts",
+						"5e0e2133e6fe5f361503a746"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "COMMENT-EDIT set comment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpheCIsImlhdCI6MTU3OTExNjk0OSwiZXhwIjoxNTc5MTE3NTQ5fQ.Z2kzMwYAR1AHP5NVEZVX2Ot4fSIoxYpmu5YF5Kc_-cE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \n        \"comments\": [\n        \t\t{\n   \n        \t\t\t\"comment\": \"comentario editado\"\n        \t\t}\n        \t]\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:3443/blog/posts/5e1f65969015833b5d50fe84/comments/5e1f65df9015833b5d50fe89",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"blog",
+						"posts",
+						"5e1f65969015833b5d50fe84",
+						"comments",
+						"5e1f65df9015833b5d50fe89"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN post get token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ane",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "ari",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:3443/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REGISTER new user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "pedro",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "picapiedras",
+							"type": "text"
+						},
+						{
+							"key": "nickname",
+							"value": "yabadabadu",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:3443/register",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WORD-POST new offensive word",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "word",
+							"value": "cabrón",
+							"type": "text"
+						},
+						{
+							"key": "level",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:3443/words/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"words",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WORD-DELETE an offensive word",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:3443/words/5e0e35e831d95e5071f6129a",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"words",
+						"5e0e35e831d95e5071f6129a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WORD-GET ALL offensive words",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFyaSIsImlhdCI6MTU3OTI4NTA4OSwiZXhwIjoxNTc5Mjg1Njg5fQ.__DPK-gSe_Q6gbUHAipR_0hyFiyJyky1-cAZ1oskS7o",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:3443/words/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"words",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WORD-EDIT an offensive word",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "word",
+							"value": "mierda",
+							"type": "text"
+						},
+						{
+							"key": "level",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:3443/words/5e171a93893813362f946ae0",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"words",
+						"5e171a93893813362f946ae0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
