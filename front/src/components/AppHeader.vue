@@ -1,6 +1,12 @@
 <template>
   <div class="header_container">
     <h1>Hola soy el header</h1>
+       <router-link :to="'/registration'">
+      Regístrate
+    </router-link>
+       <router-link :to="'/login'">
+      Entrar
+    </router-link>
   </div>
 </template>
 
