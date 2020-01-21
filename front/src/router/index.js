@@ -14,7 +14,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/postdetail',
+    path: '/postdetail/:id',
     name: 'postdetail',
     component: AppPostDetail
   },

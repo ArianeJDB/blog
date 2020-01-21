@@ -1,12 +1,11 @@
 <template>
-  <li class='preview_item' @click='goToDetail'>
+<router-link :to="'/postdetail/'+postId">
+  <li class='preview_item' @click='goToDetail' >
+    <span class='hidden'>{{post._id}}</span>
     <h4>{{post.title}}</h4>
-    <h6>Escrito por: {{post.username}} / <span>{{post.nickname}}</span></h6>
-    <router-link :to="'/postdetail'">
-    MAS
+    <h6>Escrito por: {{post.username}} / <span class='nickname'>{{post.nickname}}</span></h6>
+    </li>
     </router-link>
-      <!-- LA RUTA CAMBIA CON EL ID -->
-  </li>
 </template>
 
 <script>
@@ -14,8 +13,11 @@ export default {
   name: 'post-review',
   props: {
     post: Object,
-    goToDetail: Function
-  }
+    goToDetail: Function,
+    id: Number,
+    postId: null
+  },
+  methods: {}
 }
 
 </script>
@@ -29,8 +31,11 @@ export default {
     list-style-type: none;
     cursor: pointer;
 }
-span {
+.nickname {
     font-style: italic;
     font-weight: 100;
+}
+.hidden{
+  display: none;
 }
 </style>

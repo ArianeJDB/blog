@@ -1,11 +1,8 @@
 <template>
   <div class="home">
     <app-header />
-    <div>
-      <textarea name="Nuevo post" id="a" cols="80" rows="10"></textarea>
-      <button>Send</button>
-    </div>
-    <app-posts :posts='posts'/>
+    <app-new-post />
+    <app-posts :posts='posts' :goToDetail='goToDetail' :postId='postId' />
   </div>
 </template>
 
@@ -14,23 +11,33 @@
 import axios from 'axios'
 import AppHeader from '@/components/AppHeader.vue'
 import AppPosts from '@/components/AppPosts.vue'
-
+import AppNewPost from '../components/AppNewPost.vue'
 export default {
   name: 'Home',
   data () {
     return {
-      posts: Array
+      posts: Array,
+      postId: String
     }
   },
   components: {
     AppHeader,
-    AppPosts
+    AppPosts,
+    AppNewPost
   },
   methods: {
-    // getPosts: function () {
-    //   const url = 'https://localhost:3443/blog/posts'
-
-    // }
+    goToDetail (e, postId) {
+      const id = e.currentTarget.firstChild.innerHTML
+      this.posts.forEach(item => {
+        if (item._id === id) {
+          console.log('item', typeof item)
+          // this.postDetail = item
+          this.postId = item._id
+        }
+      })
+      // await this.getOnePost()
+      // await this.$router.push({ postDetail: 'this.postDetail' })
+    }
   },
   mounted () {
     axios

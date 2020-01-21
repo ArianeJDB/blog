@@ -5,8 +5,10 @@
       <app-post-preview
         v-for='(post, index) in posts'
         :key='index'
+        :id='index'
         :post='post'
         :goToDetail='goToDetail'
+        :postId='postId'
       />
     </ul>
   </main>
@@ -17,16 +19,12 @@ import AppPostPreview from '../components/AppPostPreview'
 export default {
   name: 'app-posts',
   props: {
-    posts: null
+    posts: null,
+    goToDetail: Function,
+    postId: null
   },
   components: {
     AppPostPreview
-  },
-  methods: {
-    goToDetail (e) {
-      const trigger = e.currentTarget
-      console.log('click aqui', trigger)
-    }
   }
 }
 </script>
