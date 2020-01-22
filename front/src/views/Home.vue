@@ -7,7 +7,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import axios from 'axios'
 import AppHeader from '@/components/AppHeader.vue'
 import AppPosts from '@/components/AppPosts.vue'
@@ -25,24 +24,21 @@ export default {
     AppPosts,
     AppNewPost
   },
+  mounted () {
+    axios
+      .get('https://localhost:3443/blog/posts')
+      .then(res => { this.posts = res.data.posts })
+  },
   methods: {
     goToDetail (e, postId) {
       const id = e.currentTarget.firstChild.innerHTML
       this.posts.forEach(item => {
         if (item._id === id) {
           console.log('item', typeof item)
-          // this.postDetail = item
           this.postId = item._id
         }
       })
-      // await this.getOnePost()
-      // await this.$router.push({ postDetail: 'this.postDetail' })
     }
-  },
-  mounted () {
-    axios
-      .get('https://localhost:3443/blog/posts')
-      .then(res => { this.posts = res.data.posts })
   }
 }
 </script>

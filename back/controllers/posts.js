@@ -62,9 +62,7 @@ function editPost(req, res) {
         if (err) {
             res.status(500).send({ message: `Error al editar este post: ${err}` })
         }
-        if (req.user.role === 'admin') {
-            res.status(200).send({ post: postUpdated })
-        } else if (req.user.username === postUpdated.username) {
+        if (req.user.role === 'admin' || req.user.username === postUpdated.username) {
             res.status(200).send({ post: postUpdated })
         } else { res.status(403).send({ message: `Solo puedes editar un post escrito por ti: ${err}` }) }
 

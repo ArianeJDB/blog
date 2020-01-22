@@ -27,7 +27,6 @@ export default {
   components: {
     AppHeader
   },
-  props: {},
   methods: {
     async sendLogin () {
       const url = 'https://localhost:3443/login'
@@ -42,11 +41,11 @@ export default {
       const token = result.data.token
       const userRole = result.data.userData.role
       const username = result.data.userData.username
-      this.addTokenLS(token, userRole, username)
+      this.addDataLS(token, userRole, username)
       this.username = ''
       this.password = ''
     },
-    addTokenLS (token, userRole, username) {
+    addDataLS (token, userRole, username) {
       localStorage.setItem('token', token)
       localStorage.setItem('role', userRole)
       localStorage.setItem('username', username)
@@ -55,7 +54,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .login_form {
   display: flex;

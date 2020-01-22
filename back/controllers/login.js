@@ -10,7 +10,7 @@ module.exports = function login(req, res) {
     const { username } = req.user;
     const userData = req.user
 
-    const opts = { expiresIn: 600 };
+    const opts = { expiresIn: 30000 };
     const token = jwt.sign({ username }, SECRET_KEY, opts);
     
     return res.status(200).json({ message: "Auth Passed", token, userData });
