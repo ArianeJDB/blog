@@ -30,16 +30,7 @@ export default {
   props: {},
   methods: {
     async sendLogin () {
-      const params = {
-        username: this.username,
-        password: this.password
-      }
       const url = 'https://localhost:3443/login'
-      console.log('PARAMS', params)
-      // await axios.post('https://localhost:3443/login', {}, { headers: { 'Authorization': 'Basic ' + params } })
-      //   .then(res => {
-      //     console.log('RESDATA LOGIN', res.data)
-      //   })
       const result = await axios.request({
         url,
         auth: {
@@ -48,9 +39,13 @@ export default {
         },
         method: 'post'
       })
+      const token = result.data.token
+      this.addTokenLS(token)
       this.username = ''
       this.password = ''
-      console.log('RESULT DATA', result.data)
+    },
+    addTokenLS (token) {
+      localStorage.setItem('token', token)
     }
   }
 }
