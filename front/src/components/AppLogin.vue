@@ -40,12 +40,16 @@ export default {
         method: 'post'
       })
       const token = result.data.token
-      this.addTokenLS(token)
+      const userRole = result.data.userData.role
+      const username = result.data.userData.username
+      this.addTokenLS(token, userRole, username)
       this.username = ''
       this.password = ''
     },
-    addTokenLS (token) {
+    addTokenLS (token, userRole, username) {
       localStorage.setItem('token', token)
+      localStorage.setItem('role', userRole)
+      localStorage.setItem('username', username)
     }
   }
 }
