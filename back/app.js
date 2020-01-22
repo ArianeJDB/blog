@@ -1,6 +1,7 @@
 'use strict';
 const fs = require('fs');
 const https = require('https');
+var cors = require('cors')
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -70,6 +71,7 @@ passport.use(new JwtStrategy(jwtOpts, async (payload, done) => {
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(cors()) 
 app.use('/blog', posts)
 app.use('/words', words)
 app.use('/login', login)

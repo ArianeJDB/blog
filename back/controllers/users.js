@@ -14,15 +14,14 @@ function createNewUser(req, res) {
     register.username = req.body.username;
     register.nickname = req.body.nickname;
     register.password = req.body.password;
-    register.nickname = req.body.nickname
     register.role = 'publisher';
-
 
     register.save((err, register) => {
         if (err) res.status(500).send({ message: `Error al registrarte: ${err}` })
+        res.status(200).send({ message: 'el usuario ha sido registrado', register })
     })
 
-    res.status(200).send({ message: 'el usuario ha sido registrado', register })
+    
     addUser(register.username, register.password, register.role, register.nickname)
 
 }
