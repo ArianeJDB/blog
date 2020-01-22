@@ -11,6 +11,7 @@
         <span class='nickname'>{{postData.nickname}}</span>
       </p>
       <button v-if='editable' @click='editPost'>Enviar comentario editado</button>
+      <button v-if='editable' @click='deletePost'>Borrar comentario</button>
       <h4>Comentarios:</h4>
     </div>
   </div>
@@ -19,13 +20,15 @@
 <script>
 import axios from 'axios'
 // import AppNewPost from '../components/AppNewPost'
+const token = localStorage.getItem('token')
 export default {
   name: 'post-detail',
   data () {
     return {
       postData: Object,
       postId: null,
-      editable: false
+      editable: false,
+      delete: false
     }
   },
   components: {
@@ -44,7 +47,6 @@ export default {
       const textEl = document.querySelector('.text')
       const titleValue = titleEl.textContent
       const textValue = textEl.textContent
-      const token = localStorage.getItem('token')
       const result = await axios.put(
         'https://localhost:3443/blog/posts/' + this.postId,
         {
@@ -57,20 +59,47 @@ export default {
           }
         }
       )
-      console.log('RESULT', result)
       if (result.status === 500) {
         console.log('ups error de servidor')
       }
       return result.status
     },
+    deletePost () {
+      if (this.validationRole()) {
+        console.log('si lo puedes borrar')
+        axios
+          .delete('https://localhost:3443/blog/posts/' + this.postId, {
+            headers: {
+              Authorization: 'Bearer ' + token
+            }
+          })
+          .then(res => {
+            console.log(res.data.message)
+            document.location.href = '/'
+          })
+      } else {
+        console.log('no puedes borrar un post que no es tuyo')
+      }
+    },
     toggleEditable () {
-      const role = localStorage.getItem('role')
-      const username = localStorage.getItem('username')
-      if (username === this.postData.username || role === 'admin') {
+      if (this.validationRole()) {
+        console.log('yeahbaby')
         this.editable = !this.editable
       } else {
         console.log('modal no puedes')
       }
+    },
+    validationRole () {
+      let validated
+      const role = localStorage.getItem('role')
+      const username = localStorage.getItem('username')
+      if (username === this.postData.username || role === 'admin') {
+        validated = true
+      } else {
+        console.log('modal no puedes')
+        validated = false
+      }
+      return validated
     }
   },
   async created () {
