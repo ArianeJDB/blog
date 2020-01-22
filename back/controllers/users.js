@@ -53,8 +53,5 @@ async function verifyPassword (user, password) {
 module.exports = {
     verifyPassword,
     find,
-    // init,
-    //addUser,
-    createNewUser,
-    // addAdmin
+    createNewUser
 }

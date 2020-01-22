@@ -2,7 +2,7 @@
   <div>
     <app-header />
     <div class="registration_form">
-      <form action="/signup" method="post">
+      <form method="post">
         <label for="username">Tu nombre de usuario</label>
         <input type="text" name="username" placeholder="John" v-model="username" />
         <label for="nickname">Tu nickname</label>
@@ -35,6 +35,9 @@ export default {
         .then(res => {
           console.log('RESDATA', res.data.register)
         })
+      this.username = ''
+      this.nickname = ''
+      this.password = ''
     }
   },
   props: {},
