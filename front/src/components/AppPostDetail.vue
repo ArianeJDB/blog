@@ -1,10 +1,12 @@
 <template>
   <div>
+    <app-header />
     <div>
       <button @click='toggleEditable'>Editar Post</button>
       <p v-if='editable'>Puedes editar el título haciendo click en él</p>
       <h3 :contenteditable='editable'>{{postData.title}}</h3>
-      <p v-if='editable'>Puedes editar el text haciendo click en él</p>
+      <p v-if='editable'>Puedes editar el text haciendo click en él
+      </p>
       <p class='text' :contenteditable='editable'>{{postData.text}}</p>
       <p>
         Escrito por: {{postData.username}} /
@@ -12,27 +14,30 @@
       </p>
       <button v-if='editable' @click='editPost'>Enviar comentario editado</button>
       <button v-if='editable' @click='deletePost'>Borrar comentario</button>
-      <h4>Comentarios:</h4>
+      <app-posts :posts='postData.comments' :message='message' v-if='postData.comments' />
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-// import AppNewPost from '../components/AppNewPost'
+import AppPosts from '../components/AppPosts'
+import AppHeader from '../components/AppHeader'
 const token = localStorage.getItem('token')
 export default {
-  name: 'post-detail',
+  name: 'app-post-detail',
   data () {
     return {
       postData: Object,
       postId: null,
       editable: false,
-      delete: false
+      delete: false,
+      message: 'Comentarios:'
     }
   },
   components: {
-    // AppNewPost
+    AppHeader,
+    AppPosts
   },
   props: {},
   methods: {
@@ -112,4 +117,10 @@ export default {
 
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped lang='scss'>
+.comments_container {
+  border: solid 1px black
+}
+li {
+  list-style-type: none
+}
 </style>

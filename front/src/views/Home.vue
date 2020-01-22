@@ -2,7 +2,7 @@
   <div class="home">
     <app-header />
     <app-new-post />
-    <app-posts :posts='posts' :goToDetail='goToDetail' :postId='postId' />
+    <app-posts :posts='posts' :postId='postId' :message='message' />
   </div>
 </template>
 
@@ -16,7 +16,8 @@ export default {
   data () {
     return {
       posts: Array,
-      postId: String
+      postId: String,
+      message: 'Posts más recientes'
     }
   },
   components: {
@@ -27,19 +28,12 @@ export default {
   mounted () {
     axios
       .get('https://localhost:3443/blog/posts')
-      .then(res => { this.posts = res.data.posts })
-  },
-  methods: {
-    goToDetail (e, postId) {
-      const id = e.currentTarget.firstChild.innerHTML
-      this.posts.forEach(item => {
-        if (item._id === id) {
-          console.log('item', typeof item)
-          this.postId = item._id
-        }
+      .then(res => {
+        this.posts = res.data.posts
+        console.log('hola', res.data.posts)
       })
-    }
-  }
+  },
+  methods: {}
 }
 </script>
 

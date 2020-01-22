@@ -1,13 +1,12 @@
 <template>
   <main>
-    <h2>Recent Posts:</h2>
+    <h2>{{message}}</h2>
     <ul class='posts_list'>
       <app-post-preview
         v-for='(post, index) in posts'
         :key='index'
         :id='index'
         :post='post'
-        :goToDetail='goToDetail'
         :postId='postId'
       />
     </ul>
@@ -21,7 +20,8 @@ export default {
   props: {
     posts: null,
     goToDetail: Function,
-    postId: null
+    postId: null,
+    message: String
   },
   components: {
     AppPostPreview

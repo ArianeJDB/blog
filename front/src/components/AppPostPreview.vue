@@ -1,11 +1,17 @@
 <template>
-<router-link :to="'/postdetail/'+postId">
-  <li class='preview_item' @click='goToDetail' >
-    <span class='hidden'>{{post._id}}</span>
-    <h4>{{post.title}}</h4>
-    <h6>Escrito por: {{post.username}} / <span class='nickname'>{{post.nickname}}</span></h6>
+  <div>
+    <li class='preview_item'>
+       <router-link :to="'/postdetail/'+post._id">Ver comentarios</router-link>
+      <span class='hidden'>{{post._id}}</span>
+      <h4>{{post.title}}</h4>
+      <p>{{post.comment}}</p>
+      <span>{{post.date}}</span>
+      <h6>
+        Escrito por: {{post.username}} /
+        <span class='nickname'>{{post.nickname}}</span>
+      </h6>
     </li>
-    </router-link>
+  </div>
 </template>
 
 <script>
@@ -19,23 +25,21 @@ export default {
   },
   methods: {}
 }
-
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<!-- Add 'scoped' attribute to limit CSS to this component only -->
+<style scoped lang='scss'>
 .preview_item {
-    border: solid black 1px;
-    width: 300px;
-    margin: 10px;
-    list-style-type: none;
-    cursor: pointer;
+  border: solid black 1px;
+  width: 300px;
+  margin: 10px;
+  list-style-type: none;
 }
 .nickname {
-    font-style: italic;
-    font-weight: 100;
+  font-style: italic;
+  font-weight: 100;
 }
-.hidden{
+.hidden {
   display: none;
 }
 </style>

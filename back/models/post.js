@@ -18,6 +18,7 @@ const PostSchema = new Schema({
     nickname: String,
     title: String,
     text: String,
+    date: { type: Date, default: Date.now },
     comments: [CommentSchema]
 
 })
