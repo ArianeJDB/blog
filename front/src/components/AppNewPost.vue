@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <div>
-      <p>Título de tu post</p>
-      <input type='text' v-model='title' />
-      Contenido
+    <div v-if='isAuth'>
+      <label for="title" v-if="element !== 'comentario'">Título de tu post</label>
+      <input type='text' v-model='title' v-if="element !== 'comentario'"/>
+      <label for="text">Contenido de tu {{element}}</label>
       <textarea name='Nuevo post' id='a' cols='80' rows='10' v-model='text'></textarea>
       <button @click='addNewPost'>Send</button>
     </div>
-  </div>
 </template>
 
 <script>
@@ -20,7 +18,10 @@ export default {
       text: null
     }
   },
-  props: {},
+  props: {
+    element: String,
+    isAuth: Boolean
+  },
   methods: {
     addNewPost () {
       const token = localStorage.getItem('token')

@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <app-header />
-    <app-new-post />
-    <app-posts :posts='posts' :postId='postId' :message='message' />
+    <app-new-post v-if='isAuth' :element='element' />
+    <app-posts :posts='posts' :postId='postId' :message='message' :element='element' :messageComments='messageComments' :isAuth='isAuth'/>
   </div>
 </template>
 
@@ -17,7 +17,10 @@ export default {
     return {
       posts: Array,
       postId: String,
-      message: 'Posts más recientes'
+      message: 'Posts más recientes',
+      element: 'post',
+      messageComments: 'Ver comentarios',
+      isAuth: false
     }
   },
   components: {
@@ -32,8 +35,17 @@ export default {
         this.posts = res.data.posts
         console.log('hola', res.data.posts)
       })
+    this.validateAuth()
   },
-  methods: {}
+  methods: {
+    validateAuth () {
+      let isAuth
+      if (localStorage.getItem('token')) {
+        isAuth = true
+      }
+      this.isAuth = isAuth
+    }
+  }
 }
 </script>
 

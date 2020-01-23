@@ -2,7 +2,7 @@
   <div>
     <app-header />
     <div>
-      <button @click='toggleEditable'>Editar Post</button>
+      <button @click='toggleEditable' v-if='isAuth' >Editar Post</button>
       <p v-if='editable'>Puedes editar el título haciendo click en él</p>
       <h3 :contenteditable='editable'>{{postData.title}}</h3>
       <p v-if='editable'>Puedes editar el text haciendo click en él
@@ -12,9 +12,9 @@
         Escrito por: {{postData.username}} /
         <span class='nickname'>{{postData.nickname}}</span>
       </p>
-      <button v-if='editable' @click='editPost'>Enviar comentario editado</button>
-      <button v-if='editable' @click='deletePost'>Borrar comentario</button>
-      <app-posts :posts='postData.comments' :message='message' v-if='postData.comments' />
+      <button v-if='editable' @click='editPost'>Enviar post editado</button>
+      <button v-if='editable' @click='deletePost'>Borrar post</button>
+      <app-posts :posts='postData.comments' :message='message' v-if='postData.comments' :element='element' :messageComments='messageComments' :validationRole='validated' :isAuth='isAuth' />
     </div>
   </div>
 </template>
@@ -31,8 +31,12 @@ export default {
       postData: Object,
       postId: null,
       editable: false,
+      validated: false,
       delete: false,
-      message: 'Comentarios:'
+      message: 'Comentarios:',
+      element: 'comentario',
+      messageComments: '',
+      isAuth: Boolean
     }
   },
   components: {
@@ -70,7 +74,7 @@ export default {
       return result.status
     },
     deletePost () {
-      if (this.validationRole()) {
+      if (this.validated) {
         console.log('si lo puedes borrar')
         axios
           .delete('https://localhost:3443/blog/posts/' + this.postId, {
@@ -87,7 +91,7 @@ export default {
       }
     },
     toggleEditable () {
-      if (this.validationRole()) {
+      if (this.validated) {
         console.log('yeahbaby')
         this.editable = !this.editable
       } else {
@@ -101,14 +105,15 @@ export default {
       if (username === this.postData.username || role === 'admin') {
         validated = true
       } else {
-        console.log('modal no puedes')
         validated = false
       }
-      return validated
+      this.validated = validated
     }
   },
   async created () {
     let idParam = this.$route.params.id
+    let isAuth = this.$route.params.isAuth
+    this.isAuth = isAuth
     this.postId = idParam
     await this.getOnePost(idParam)
   }
