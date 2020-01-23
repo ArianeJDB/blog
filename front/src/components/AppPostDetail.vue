@@ -2,19 +2,32 @@
   <div>
     <app-header />
     <div>
-      <button @click='toggleEditable' v-if='isAuth' >Editar Post</button>
+      <div v-if='validated'>
+        <button @click='toggleEditable'>Editar Post</button>
+        <button @click='deletePost'>Borrar post</button>
+      </div>
       <p v-if='editable'>Puedes editar el título haciendo click en él</p>
       <h3 :contenteditable='editable'>{{postData.title}}</h3>
-      <p v-if='editable'>Puedes editar el text haciendo click en él
-      </p>
+      <p v-if='editable'>Puedes editar el text haciendo click en él</p>
       <p class='text' :contenteditable='editable'>{{postData.text}}</p>
       <p>
         Escrito por: {{postData.username}} /
         <span class='nickname'>{{postData.nickname}}</span>
       </p>
       <button v-if='editable' @click='editPost'>Enviar post editado</button>
-      <button v-if='editable' @click='deletePost'>Borrar post</button>
-      <app-posts :posts='postData.comments' :message='message' v-if='postData.comments' :element='element' :messageComments='messageComments' :validationRole='validated' :isAuth='isAuth' />
+      <app-new-post
+        :element='element'
+        :isAuth='isAuth'
+        :postId='postId'
+      />
+      <app-posts
+        :posts='postData.comments'
+        :message='message'
+        v-if='postData.comments'
+        :element='element'
+        :messageComments='messageComments'
+        :validationRole='validated'
+      />
     </div>
   </div>
 </template>
@@ -23,6 +36,7 @@
 import axios from 'axios'
 import AppPosts from '../components/AppPosts'
 import AppHeader from '../components/AppHeader'
+import AppNewPost from '../components/AppNewPost'
 const token = localStorage.getItem('token')
 export default {
   name: 'app-post-detail',
@@ -35,15 +49,18 @@ export default {
       delete: false,
       message: 'Comentarios:',
       element: 'comentario',
-      messageComments: '',
-      isAuth: Boolean
+      messageComments: ''
     }
   },
   components: {
     AppHeader,
-    AppPosts
+    AppPosts,
+    AppNewPost
   },
-  props: {},
+  props: {
+    isAuth: Boolean,
+    newComment: null
+  },
   methods: {
     getOnePost (idParam) {
       axios.get('https://localhost:3443/blog/posts/' + idParam).then(res => {
@@ -51,7 +68,6 @@ export default {
       })
     },
     async editPost () {
-      console.log('IDEPARA', this.postId)
       const titleEl = document.querySelector('h3')
       const textEl = document.querySelector('.text')
       const titleValue = titleEl.textContent
@@ -90,6 +106,25 @@ export default {
         console.log('no puedes borrar un post que no es tuyo')
       }
     },
+    deleteComment (e) {
+      const trigger = e.currentTarget.parentElement
+      const t = e.target
+      console.log(trigger, t)
+      if (this.validated) {
+        console.log('si lo puedes borrar')
+        axios
+          .delete('https://localhost:3443/blog/posts/' + this.postId + '/comments/' + this.commentId, {
+            headers: {
+              Authorization: 'Bearer ' + token
+            }
+          })
+          .then(res => {
+            console.log(res.data.message)
+          })
+      } else {
+        console.log('no puedes borrar un post que no es tuyo')
+      }
+    },
     toggleEditable () {
       if (this.validated) {
         console.log('yeahbaby')
@@ -112,10 +147,9 @@ export default {
   },
   async created () {
     let idParam = this.$route.params.id
-    let isAuth = this.$route.params.isAuth
-    this.isAuth = isAuth
     this.postId = idParam
     await this.getOnePost(idParam)
+    await this.validationRole()
   }
 }
 </script>

@@ -1,8 +1,17 @@
 <template>
   <div class="home">
     <app-header />
-    <app-new-post v-if='isAuth' :element='element' />
-    <app-posts :posts='posts' :postId='postId' :message='message' :element='element' :messageComments='messageComments' :isAuth='isAuth'/>
+    <app-new-post
+      :element='element'
+      :isAuth='isAuth'
+    />
+    <app-posts
+      :posts='posts'
+      :postId='postId'
+      :message='message'
+      :element='element'
+      :messageComments='messageComments'
+    />
   </div>
 </template>
 
@@ -20,7 +29,7 @@ export default {
       message: 'Posts más recientes',
       element: 'post',
       messageComments: 'Ver comentarios',
-      isAuth: false
+      isAuth: Boolean
     }
   },
   components: {
@@ -29,21 +38,27 @@ export default {
     AppNewPost
   },
   mounted () {
+    this.validateAuth()
     axios
       .get('https://localhost:3443/blog/posts')
       .then(res => {
         this.posts = res.data.posts
         console.log('hola', res.data.posts)
       })
-    this.validateAuth()
   },
   methods: {
     validateAuth () {
-      let isAuth
-      if (localStorage.getItem('token')) {
-        isAuth = true
+      let auth
+      console.log(localStorage.getItem('token'))
+      if (localStorage.getItem('token') !== null) {
+        console.log('ESTA AUTH')
+        auth = true
+      } else {
+        console.log('NOPPPP')
+        auth = false
       }
-      this.isAuth = isAuth
+      this.isAuth = auth
+      return auth
     }
   }
 }

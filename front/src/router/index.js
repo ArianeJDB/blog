@@ -6,7 +6,7 @@ import AppRegistration from '../components/AppRegistration'
 import AppLogin from '../components/AppLogin'
 
 Vue.use(VueRouter)
-
+const isAuth = Home.methods.validateAuth()
 const routes = [
   {
     path: '/',
@@ -16,7 +16,8 @@ const routes = [
   {
     path: '/postdetail/:id',
     name: 'postdetail',
-    component: AppPostDetail
+    component: AppPostDetail,
+    props: { newComment: String, isAuth: isAuth }
   },
   {
     path: '/registration',
