@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class='app-posts'>
     <div v-if="element === 'comentario'">
     </div>
     <h2>{{message}}</h2>

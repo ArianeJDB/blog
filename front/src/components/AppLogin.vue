@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-header />
-    <div class="login_form">
+    <div class="app-login">
       <form method="post">
         <label for="username">Nombre de usuario</label>
         <input type="text" name="username" placeholder="John" v-model="username" />
@@ -56,8 +56,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.login_form {
-  display: flex;
-  flex-direction: column;
-}
+// .login_form {
+//   display: flex;
+//   flex-direction: column;
+// }
 </style>

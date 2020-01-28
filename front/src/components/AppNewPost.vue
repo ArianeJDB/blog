@@ -1,5 +1,5 @@
 <template>
-  <div v-if='isAuth'>
+  <div v-if='isAuth' class='app-new-post'>
     <label for='title' v-if="element !== 'comentario'">Título de tu post</label>
     <input type='text' v-model='title' v-if="element !== 'comentario'" />
 

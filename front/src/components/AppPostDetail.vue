@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-header />
-    <div>
+    <div class='app-post-detail'>
       <div v-if='validateAuthorPost'>
         <button @click='toggleEditable'>Editar Post</button>
         <button @click='deletePost'>Borrar post</button>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='app-post-preview'>
     <li class='preview_item'>
        <router-link :to="'/postdetail/'+post._id">
        {{messageComments}}</router-link>
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'post-review',
+  name: 'app-post-preview',
   props: {
     post: Object,
     id: Number,

@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-header />
-    <div class="registration_form">
+    <div class="app-registration">
       <form method="post">
         <label for="username">Tu nombre de usuario</label>
         <input type="text" name="username" placeholder="John" v-model="username" />
@@ -49,8 +49,5 @@ export default {
 
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped lang='scss'>
-form {
-  display: flex;
-  flex-direction: column;
-}
+
 </style>
