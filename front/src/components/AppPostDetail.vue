@@ -66,6 +66,8 @@ export default {
     getOnePost (idParam) {
       axios.get('https://localhost:3443/blog/posts/' + idParam).then(res => {
         this.postData = res.data.post
+        console.log('quien eres?????', this.postData)
+        this.validationRole()
       })
     },
     async editPost () {
@@ -134,11 +136,13 @@ export default {
         console.log('modal no puedes')
       }
     },
-    validationRole () {
+    async validationRole () {
       let validated
       const role = localStorage.getItem('role')
       const username = localStorage.getItem('username')
-      if (username === this.postData.username || role === 'admin') {
+      const usernamePost = await this.postData.username
+      await console.log('POSTDAT', this.postData)
+      if (username === usernamePost || role === 'admin') {
         validated = true
       } else {
         validated = false
@@ -150,7 +154,6 @@ export default {
     let idParam = this.$route.params.id
     this.postId = idParam
     await this.getOnePost(idParam)
-    await this.validationRole()
   }
 }
 </script>
