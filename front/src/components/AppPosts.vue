@@ -12,7 +12,8 @@
         :postId='postId'
         :element='element'
         :messageComments='messageComments'
-        :validationRole='validationRole'
+        :validationAuthorPost='validationAuthorPost'
+        :validationAuthorComment='validationAuthorComment'
         :deleteComment='deleteComment'
       />
     </ul>
@@ -33,8 +34,9 @@ export default {
     message: String,
     element: String,
     messageComments: String,
-    validationRole: Boolean,
-    deleteComment: Function
+    validationAuthorPost: Boolean,
+    deleteComment: Function,
+    validationAuthorComment: Boolean
   },
   components: {
     AppPostPreview

@@ -2,7 +2,7 @@
   <div>
     <app-header />
     <div>
-      <div v-if='validated'>
+      <div v-if='validateAuthorPost'>
         <button @click='toggleEditable'>Editar Post</button>
         <button @click='deletePost'>Borrar post</button>
       </div>
@@ -26,8 +26,9 @@
         v-if='postData.comments'
         :element='element'
         :messageComments='messageComments'
-        :validationRole='validated'
+        :validationAuthorPost='validateAuthorPost'
         :deleteComment ='deleteComment'
+        :validationAuthorComment='validateAuthorComment'
       />
     </div>
   </div>
@@ -46,7 +47,8 @@ export default {
       postData: Object,
       postId: null,
       editable: false,
-      validated: false,
+      validateAuthorPost: false,
+      validateAuthorComment: false,
       delete: false,
       message: 'Comentarios:',
       element: 'comentario',
@@ -66,8 +68,8 @@ export default {
     getOnePost (idParam) {
       axios.get('https://localhost:3443/blog/posts/' + idParam).then(res => {
         this.postData = res.data.post
-        console.log('quien eres?????', this.postData)
-        this.validationRole()
+        this.validationAuthorPost()
+        this.validationAuthorComment()
       })
     },
     async editPost () {
@@ -93,7 +95,7 @@ export default {
       return result.status
     },
     deletePost () {
-      if (this.validated) {
+      if (this.validateAuthorPost) {
         console.log('si lo puedes borrar')
         axios
           .delete('https://localhost:3443/blog/posts/' + this.postId, {
@@ -112,8 +114,7 @@ export default {
     deleteComment (e) {
       const trigger = e.currentTarget.parentElement
       const commentId = trigger.querySelector('.hidden').textContent
-      console.log('TRIGGER COMMENT', trigger)
-      if (this.validated) {
+      if (this.validateAuthorPost) {
         console.log('si lo puedes borrar')
         axios
           .delete('https://localhost:3443/blog/posts/' + this.postId + '/comments/' + commentId, {
@@ -125,30 +126,58 @@ export default {
             console.log(res.data.message)
           })
       } else {
-        console.log('no puedes borrar un post que no es tuyo')
+        console.log('no puedes borrar comentarios de un post que no es tuyo')
       }
     },
     toggleEditable () {
-      if (this.validated) {
-        console.log('yeahbaby')
+      if (this.validateAuthorPost) {
         this.editable = !this.editable
       } else {
         console.log('modal no puedes')
       }
     },
-    async validationRole () {
+    async validationAuthorPost () {
       let validated
       const role = localStorage.getItem('role')
       const username = localStorage.getItem('username')
       const usernamePost = await this.postData.username
-      await console.log('POSTDAT', this.postData)
       if (username === usernamePost || role === 'admin') {
+        console.log('es mi entrada y puedo borrar comentarios')
         validated = true
       } else {
         validated = false
       }
-      this.validated = validated
+      this.validateAuthorPost = validated
+    },
+    async validationAuthorComment () {
+      let validated
+      const role = localStorage.getItem('role')
+      const username = localStorage.getItem('username')
+      console.log('111usernameeeee', username)
+      this.postData.comments.forEach(comment => {
+        console.log('222222', comment.username)
+        if (comment.username === username || role === 'admin') {
+          console.log('Soy el autor de este comentario y puedo borrarlo')
+          validated = true
+        } else {
+          validated = false
+        }
+      })
+      this.validateAuthorComment = validated
     }
+    // async validationRole () {
+    //   let validated
+    //   const role = localStorage.getItem('role')
+    //   const username = localStorage.getItem('username')
+    //   const usernamePost = await this.postData.username
+    //   if (username === usernamePost || role === 'admin') {
+    //     console.log('es mi entrada y puedo borrar este comentario')
+    //     validated = true
+    //   } else {
+    //     validated = false
+    //   }
+    //   this.validatedRole = validated
+    // }
   },
   async created () {
     let idParam = this.$route.params.id
