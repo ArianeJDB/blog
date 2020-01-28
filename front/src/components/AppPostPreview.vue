@@ -12,6 +12,7 @@
         <span class='nickname'>{{post.nickname}}</span>
       </h6>
       <button v-if='validationAuthorPost' @click='deleteComment'>Borrar comentario</button>
+      <button v-if='validationAuthorComment'>Editar comentario</button>
     </li>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <app-header />
+    <app-header :goHome='goHome' />
     <app-new-post
       :element='element'
       :isAuth='isAuth'
@@ -57,6 +57,9 @@ export default {
       }
       this.isAuth = auth
       return auth
+    },
+    goHome () {
+      window.location = '/'
     }
   }
 }

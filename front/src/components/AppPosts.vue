@@ -46,8 +46,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang='scss'>
-.posts_list {
-  display: grid;
-  grid-template-columns: 1fr, 1fr, 1fr;
-}
+
 </style>

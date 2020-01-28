@@ -44,6 +44,7 @@ export default {
       this.addDataLS(token, userRole, username)
       this.username = ''
       this.password = ''
+      window.location = '/'
     },
     addDataLS (token, userRole, username) {
       localStorage.setItem('token', token)

@@ -153,9 +153,7 @@ export default {
       let validated
       const role = localStorage.getItem('role')
       const username = localStorage.getItem('username')
-      console.log('111usernameeeee', username)
       this.postData.comments.forEach(comment => {
-        console.log('222222', comment.username)
         if (comment.username === username || role === 'admin') {
           console.log('Soy el autor de este comentario y puedo borrarlo')
           validated = true
@@ -165,19 +163,6 @@ export default {
       })
       this.validateAuthorComment = validated
     }
-    // async validationRole () {
-    //   let validated
-    //   const role = localStorage.getItem('role')
-    //   const username = localStorage.getItem('username')
-    //   const usernamePost = await this.postData.username
-    //   if (username === usernamePost || role === 'admin') {
-    //     console.log('es mi entrada y puedo borrar este comentario')
-    //     validated = true
-    //   } else {
-    //     validated = false
-    //   }
-    //   this.validatedRole = validated
-    // }
   },
   async created () {
     let idParam = this.$route.params.id

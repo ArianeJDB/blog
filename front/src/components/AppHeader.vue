@@ -1,5 +1,6 @@
 <template>
   <div class="header_container">
+   <router-link :to="'/'"> HOME</router-link>
     <h1>Hola soy el header</h1>
        <router-link :to="'/registration'">
       Regístrate
@@ -13,7 +14,9 @@
 <script>
 export default {
   name: 'app-header',
-  props: {}
+  props: {
+    goHome: Function
+  }
 }
 </script>
 
