@@ -27,6 +27,7 @@
         :element='element'
         :messageComments='messageComments'
         :validationRole='validated'
+        :deleteComment ='deleteComment'
       />
     </div>
   </div>
@@ -108,12 +109,12 @@ export default {
     },
     deleteComment (e) {
       const trigger = e.currentTarget.parentElement
-      const t = e.target
-      console.log(trigger, t)
+      const commentId = trigger.querySelector('.hidden').textContent
+      console.log('TRIGGER COMMENT', trigger)
       if (this.validated) {
         console.log('si lo puedes borrar')
         axios
-          .delete('https://localhost:3443/blog/posts/' + this.postId + '/comments/' + this.commentId, {
+          .delete('https://localhost:3443/blog/posts/' + this.postId + '/comments/' + commentId, {
             headers: {
               Authorization: 'Bearer ' + token
             }

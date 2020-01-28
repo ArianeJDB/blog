@@ -11,7 +11,7 @@
         Escrito por: {{post.username}} /
         <span class='nickname'>{{post.nickname}}</span>
       </h6>
-      <button v-if='validationRole'>Borrar comentario</button>
+      <button v-if='validationRole' @click='deleteComment'>Borrar comentario</button>
     </li>
   </div>
 </template>
@@ -25,7 +25,8 @@ export default {
     postId: null,
     element: String,
     messageComments: String,
-    validationRole: Boolean
+    validationRole: Boolean,
+    deleteComment: Function
   },
   methods: {}
 }

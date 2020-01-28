@@ -43,18 +43,16 @@ export default {
       .get('https://localhost:3443/blog/posts')
       .then(res => {
         this.posts = res.data.posts
-        console.log('hola', res.data.posts)
       })
   },
   methods: {
     validateAuth () {
       let auth
-      console.log(localStorage.getItem('token'))
       if (localStorage.getItem('token') !== null) {
         console.log('ESTA AUTH')
         auth = true
       } else {
-        console.log('NOPPPP')
+        console.log('No está auth')
         auth = false
       }
       this.isAuth = auth

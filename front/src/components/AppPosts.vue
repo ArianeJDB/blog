@@ -13,6 +13,7 @@
         :element='element'
         :messageComments='messageComments'
         :validationRole='validationRole'
+        :deleteComment='deleteComment'
       />
     </ul>
   </main>
@@ -32,7 +33,8 @@ export default {
     message: String,
     element: String,
     messageComments: String,
-    validationRole: Boolean
+    validationRole: Boolean,
+    deleteComment: Function
   },
   components: {
     AppPostPreview

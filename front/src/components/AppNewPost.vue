@@ -64,7 +64,7 @@ export default {
           }
         }
       )
-      console.log('result', result)
+      console.log('result add new comment', result)
       // if (result.data.status === 500) {
       //   console.log('ups error de servidor')
       // } else if (result.data.status === 200) {
