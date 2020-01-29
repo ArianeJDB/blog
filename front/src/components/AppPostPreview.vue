@@ -1,20 +1,17 @@
 <template>
-  <div class='app-post-preview'>
-    <li class='preview_item'>
-       <router-link :to="'/postdetail/'+post._id">
-       {{messageComments}}</router-link>
-      <span class='hidden'>{{post._id}}</span>
-      <h4>{{post.title}}</h4>
+  <li v-if='post !== undefined' class="preview_item ma-5">
+    <v-card class="text-center pa-5">
+      <span class="hidden">{{post._id}}</span>
+      <h2 class='display-1'>{{post.title}}</h2>
+      <h4 class='subtitle-1'>Escrito por: {{post.username}} / <span class="nickname">{{post.nickname}}</span>
+      </h4>
+      <p class='overline'>({{post.date}})</p>
       <p>{{post.comment}}</p>
-      <span>{{post.date}}</span>
-      <h6>
-        Escrito por: {{post.username}} /
-        <span class='nickname'>{{post.nickname}}</span>
-      </h6>
-      <button v-if='validationAuthorPost' @click='deleteComment'>Borrar comentario</button>
-      <button v-if='validationAuthorComment'>Editar comentario</button>
-    </li>
-  </div>
+      <v-btn v-if="validationAuthorPost" @click="deleteComment" class='teal white--text'>Borrar comentario</v-btn>
+      <!-- <button v-if="validationAuthorComment">Editar comentario</button> -->
+      <v-btn v-if='post.title !== undefined' class='deep-orange darken-3'><router-link class='link  white--text' :to="'/postdetail/'+post._id">{{messageComments}}</router-link></v-btn>
+  </v-card>
+  </li>
 </template>
 
 <script>
@@ -35,9 +32,10 @@ export default {
 </script>
 <style scoped lang='scss'>
 .preview_item {
-  border: solid black 1px;
-  width: 300px;
-  margin: 10px;
+  width: 40%;
+  // border: solid black 1px;
+  // width: 300px;
+  // margin: 10px;
   list-style-type: none;
 }
 .nickname {
@@ -46,5 +44,9 @@ export default {
 }
 .hidden {
   display: none;
+}
+.link{
+  text-decoration: none;
+  cursor: pointer;
 }
 </style>

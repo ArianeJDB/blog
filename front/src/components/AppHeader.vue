@@ -1,6 +1,6 @@
 <template>
   <nav class="app-header">
-    <v-toolbar class="teal" height="100px">
+    <v-toolbar class="teal m" height="100px">
       <router-link :to="'/'">
         <img src="../assets/logo.png" alt />
       </router-link>
@@ -10,11 +10,6 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <div class="hidden-md-and-down menu">
-        <div class='mx-3'>
-          <span>Hola,</span>
-          <span class="font-weight-medium ml-2">{{username}}</span> /
-          <span class="font-weight-light">{{nickname}}</span>
-        </div>
         <router-link :to="'/registration'" class="link">
           <div>
             <v-icon>mdi-account-plus</v-icon>
@@ -32,13 +27,6 @@
       <v-icon class="black--text hidden-lg-and-up" @click="drawer = !drawer">mdi-menu</v-icon>
     </v-toolbar>
     <v-navigation-drawer right v-model="drawer" app class="deep-orange darken-3 hidden-lg-and-up">
-      <div class="welcome_container pt-10">
-        <span class="hola subtitle-1 ml-3">Hola,</span>
-        <div class="display-1 text-center">
-          <span class="font-weight-medium">{{username}}</span>
-          <span v-if='nickname !== null' class="font-weight-light"> /{{nickname}}</span>
-        </div>
-      </div>
       <router-link :to="'/registration'" class="link">
         <div class="registration_container my-10">
           <v-icon class="mx-6">mdi-account-plus</v-icon>
@@ -65,8 +53,8 @@ export default {
   name: 'app-header',
   props: {
     goHome: Function,
-    username: String,
-    nickname: String
+    username: null,
+    nickname: null
   }
 }
 </script>
@@ -99,5 +87,11 @@ img {
 }
 .usernick{
   border-right: solid 1px black;
+}
+.m{
+  position: fixed;
+  top:0;
+  width: 100%;
+  z-index: 1
 }
 </style>

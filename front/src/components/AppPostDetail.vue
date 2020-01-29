@@ -1,37 +1,34 @@
 <template>
   <div>
     <app-header />
-    <div class='app-post-detail'>
-      <div v-if='validateAuthorPost'>
-        <button @click='toggleEditable'>Editar Post</button>
-        <button @click='deletePost'>Borrar post</button>
+    <div class='container'>
+      <div v-if="validateAuthorPost" class='btns_container text-center my-8'>
+        <v-btn class='mx-8 deep-orange darken-3 white--text' @click="toggleEditable">Editar Post</v-btn>
+        <v-btn class='mx-8 deep-orange darken-3 white--text' @click="deletePost">Borrar post</v-btn>
       </div>
-      <p v-if='editable'>Puedes editar el título haciendo click en él</p>
-      <h3 :contenteditable='editable'>{{postData.title}}</h3>
-      <p v-if='editable'>Puedes editar el text haciendo click en él</p>
-      <p class='text' :contenteditable='editable'>{{postData.text}}</p>
-      <p>
-        Escrito por: {{postData.username}} /
-        <span class='nickname'>{{postData.nickname}}</span>
-      </p>
-      <button v-if='editable' @click='editPost'>Enviar post editado</button>
-      <app-new-post
-        :element='element'
-        :isAuth='isAuth'
-        :postId='postId'
-      />
+        <v-card width='50%' class='text-center pa-5 mt-5'>
+        <p v-if="editable" class=' deep-orange--text text--darken-3 mb-0'>Puedes editar el título haciendo click en él</p>
+        <h2 class='display-1' :contenteditable="editable">{{postData.title}}</h2>
+        <p class='overline'>({{postData.date}})</p>
+        <p v-if="editable" class=' deep-orange--text text--darken-3 mb-0'>Puedes editar el texto haciendo click en él</p>
+        <p class="text headline mt-0" :contenteditable="editable">{{postData.text}}</p>
+         <h4 class='subtitle-1 mb-5'>Escrito por: {{postData.username}} / <span class="nickname">{{postData.nickname}}</span>
+      </h4>
+        <v-btn v-if="editable" class='teal white--text' @click="editPost">Enviar post editado</v-btn>
+      </v-card>
+      </div>
+      <app-new-post :element="element" :isAuth="isAuth" :postId="postId" />
       <app-posts
-        :posts='postData.comments'
-        :message='message'
-        v-if='postData.comments'
-        :element='element'
-        :messageComments='messageComments'
-        :validationAuthorPost='validateAuthorPost'
-        :deleteComment ='deleteComment'
-        :validationAuthorComment='validateAuthorComment'
+        :posts="postData.comments"
+        :message="message"
+        v-if="postData.comments"
+        :element="element"
+        :messageComments="messageComments"
+        :validationAuthorPost="validateAuthorPost"
+        :deleteComment="deleteComment"
+        :validationAuthorComment="validateAuthorComment"
       />
     </div>
-  </div>
 </template>
 
 <script>
@@ -50,7 +47,7 @@ export default {
       validateAuthorPost: false,
       validateAuthorComment: false,
       delete: false,
-      message: 'Comentarios:',
+      message: 'Comentarios',
       element: 'comentario',
       messageComments: ''
     }
@@ -125,6 +122,7 @@ export default {
           .then(res => {
             console.log(res.data.message)
           })
+        window.location.reload(false)
       } else {
         console.log('no puedes borrar comentarios de un post que no es tuyo')
       }
@@ -179,5 +177,18 @@ export default {
 }
 li {
   list-style-type: none
+}
+.nickname {
+  font-style: italic;
+  font-weight: 100;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.btns_container{
+  display: flex;
 }
 </style>

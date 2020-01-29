@@ -2,7 +2,7 @@
   <main class='app-posts'>
     <div v-if="element === 'comentario'">
     </div>
-    <h2>{{message}}</h2>
+    <h2 class='text-center my-7 headline deep-orange--text text--darken-3'>{{message}}:</h2>
     <ul class='posts_list'>
       <app-post-preview
         v-for='(post, index) in posts'
@@ -44,7 +44,12 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang='scss'>
-
+<style scoped>
+.posts_list{
+      text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 </style>

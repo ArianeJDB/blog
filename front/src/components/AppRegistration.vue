@@ -1,16 +1,19 @@
 <template>
   <div>
     <app-header />
-    <div class="app-registration">
-      <form method="post">
-        <label for="username">Tu nombre de usuario</label>
-        <input type="text" name="username" placeholder="John" v-model="username" />
-        <label for="nickname">Tu nickname</label>
-        <input type="text" name="nickname" placeholder="Johny" v-model="nickname" />
-        <label for="nickname">Escribe tu contraseña (mínimo 6 caracteres)</label>
-        <input type="password" name="password" v-model="password" />
-      </form>
-      <button @click='sendRegistration'>Enviar</button>
+    <div class="app-registration mt-12 text-center">
+       <v-card-title class='deep-orange--text text--darken-3'>Registro</v-card-title>
+        <v-card width='70%'>
+      <v-form method="post" class='mx-12 mt-12'>
+        <v-text-field type='text' color='deep-orange darken-3' label='Tu nombre de usuario' v-model='username'>
+        </v-text-field>
+          <v-text-field type='text' color='deep-orange darken-3' label='Tu nickname' v-model='nickname'>
+        </v-text-field>
+        <v-text-field type='password' color='deep-orange darken-3' label='Escribe tu contraseña (mínimo 6 caracteres)' v-model='password'>
+        </v-text-field>
+      </v-form>
+       <v-btn class='my-8 teal white--text' @click="sendRegistration">Enviar</v-btn>
+       </v-card>
     </div>
   </div>
 </template>
@@ -49,5 +52,10 @@ export default {
 
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped lang='scss'>
-
+.app-registration{
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 </style>

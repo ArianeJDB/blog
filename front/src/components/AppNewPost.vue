@@ -1,6 +1,6 @@
 <template>
-  <div v-if='isAuth' class='app-new-post'>
-    <h2 class='text-center mt-5 display-1'>Escribe tu {{element}}</h2>
+  <div v-if='isAuth' class='app-new-post pt-12 mt-12'>
+    <h2 class='text-center mt-5 headline deep-orange--text text--darken-3'>Escribe tu {{element}}</h2>
       <v-form class='mx-12 mt-12'>
     <v-text-field color='deep-orange darken-3' label='Tìtulo' v-if="element !== 'comentario'" v-model='title'>
     </v-text-field>

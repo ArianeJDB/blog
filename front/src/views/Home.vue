@@ -40,30 +40,28 @@ export default {
     AppNewPost
   },
   mounted () {
-    this.validateAuth()
-    this.whoIsAuth()
     axios
       .get('https://localhost:3443/blog/posts')
       .then(res => {
         this.posts = res.data.posts
       })
+    this.validateAuth()
+    this.whoIsAuth()
   },
   methods: {
     validateAuth () {
       let auth
       if (localStorage.getItem('token') !== null) {
-        console.log('ESTA AUTH')
         auth = true
       } else {
         console.log('No está auth')
         auth = false
       }
       this.isAuth = auth
-      return auth
+      return this.isAuth
     },
     whoIsAuth () {
       if (localStorage.getItem('username') !== null) {
-        console.log(this.nicknameAuth = localStorage.getItem('nickname'))
         this.usernameAuth = localStorage.getItem('username')
         this.nicknameAuth = localStorage.getItem('nickname')
       } else {
