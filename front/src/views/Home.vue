@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <app-header :goHome='goHome' />
+    <app-header :goHome='goHome' :username='usernameAuth' :nickname='nicknameAuth' />
     <app-new-post
       :element='element'
       :isAuth='isAuth'
@@ -29,7 +29,9 @@ export default {
       message: 'Posts más recientes',
       element: 'post',
       messageComments: 'Ver comentarios',
-      isAuth: Boolean
+      isAuth: Boolean,
+      usernameAuth: String,
+      nicknameAuth: String
     }
   },
   components: {
@@ -39,6 +41,7 @@ export default {
   },
   mounted () {
     this.validateAuth()
+    this.whoIsAuth()
     axios
       .get('https://localhost:3443/blog/posts')
       .then(res => {
@@ -57,6 +60,15 @@ export default {
       }
       this.isAuth = auth
       return auth
+    },
+    whoIsAuth () {
+      if (localStorage.getItem('username') !== null) {
+        console.log(this.nicknameAuth = localStorage.getItem('nickname'))
+        this.usernameAuth = localStorage.getItem('username')
+        this.nicknameAuth = localStorage.getItem('nickname')
+      } else {
+        this.usernameAuth = 'desconocido'
+      }
     },
     goHome () {
       window.location = '/'

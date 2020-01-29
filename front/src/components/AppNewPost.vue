@@ -1,11 +1,18 @@
 <template>
   <div v-if='isAuth' class='app-new-post'>
-    <label for='title' v-if="element !== 'comentario'">Título de tu post</label>
-    <input type='text' v-model='title' v-if="element !== 'comentario'" />
-
-    <label for='text'>Contenido de tu {{element}}</label>
+    <h2 class='text-center mt-5 display-1'>Escribe tu {{element}}</h2>
+      <v-form class='mx-12 mt-12'>
+    <v-text-field color='deep-orange darken-3' label='Tìtulo' v-if="element !== 'comentario'" v-model='title'>
+    </v-text-field>
+        <v-textarea color='deep-orange darken-3' label="Contenido" v-model='text'></v-textarea>
+        <div class= 'text-right'>
+        <v-btn class='teal white--text' @click="element === 'post' ? addNewPost() : addNewComment()">Enviar</v-btn>
+        </div>
+        <!-- <button @click="element === 'post' ? addNewPost() : addNewComment()">Enviar {{element}}</button> -->
+  </v-form>
+<!-- <label for='text'>Contenido de tu {{element}}</label>
     <textarea name='Nuevo post' id='a' cols='80' rows='10' v-model='text'></textarea>
-    <button @click="element === 'post' ? addNewPost() : addNewComment()">Enviar {{element}}</button>
+    <button @click="element === 'post' ? addNewPost() : addNewComment()">Enviar {{element}}</button> -->
   </div>
 </template>
 

@@ -41,15 +41,17 @@ export default {
       const token = result.data.token
       const userRole = result.data.userData.role
       const username = result.data.userData.username
-      this.addDataLS(token, userRole, username)
+      const nickname = result.data.userData.nickname
+      this.addDataLS(token, userRole, username, nickname)
       this.username = ''
       this.password = ''
       window.location = '/'
     },
-    addDataLS (token, userRole, username) {
+    addDataLS (token, userRole, username, nickname) {
       localStorage.setItem('token', token)
       localStorage.setItem('role', userRole)
       localStorage.setItem('username', username)
+      localStorage.setItem('nickname', nickname)
     }
   }
 }
