@@ -34,11 +34,11 @@ export default {
   },
   methods: {
     sendRegistration () {
-      const params = { username: this.username, nickname: this.username, password: this.password }
+      const params = { username: this.username, nickname: this.nickname, password: this.password }
 
       axios.post('https://localhost:3443/register', params)
         .then(res => {
-          console.log('RESDATA', res.data.register)
+          console.log('RESDATA', res.status)
         })
       this.username = ''
       this.nickname = ''

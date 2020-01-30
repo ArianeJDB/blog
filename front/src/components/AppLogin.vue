@@ -5,9 +5,9 @@
       <v-card-title class='deep-orange--text text--darken-3'>Entrar</v-card-title>
       <v-card width='70%'>
       <v-form method="post" class='mx-12 mt-12'>
-        <v-text-field type='text' color='deep-orange darken-3' label='Nombre de usuario' v-model='username'>
+        <v-text-field type='text' class='input_username' color='deep-orange darken-3' label='Nombre de usuario' v-model='username' data-cy='username'>
         </v-text-field>
-         <v-text-field color='deep-orange darken-3' label='Contraseña' type='password' v-model='password'>
+         <v-text-field class='input_password' color='deep-orange darken-3' label='Contraseña' type='password' v-model='password'>
         </v-text-field>
         <!-- <label for="username">Nombre de usuario</label>
         <input type="text" name="username" placeholder="John" v-model="username" /> -->

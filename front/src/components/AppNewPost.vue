@@ -2,9 +2,11 @@
   <div v-if='isAuth' class='app-new-post pt-12 mt-12'>
     <h2 class='text-center mt-5 headline deep-orange--text text--darken-3'>Escribe tu {{element}}</h2>
       <v-form class='mx-12 mt-12'>
-    <v-text-field color='deep-orange darken-3' label='Tìtulo' v-if="element !== 'comentario'" v-model='title'>
+    <v-text-field class='input_title' color='deep-orange darken-3' label='Tìtulo' v-if="element !== 'comentario'" v-model='title'>
     </v-text-field>
-        <v-textarea color='deep-orange darken-3' label="Contenido" v-model='text'></v-textarea>
+        <v-textarea class='input_text' color='deep-orange darken-3' label="Contenido" v-model='text'></v-textarea>
+        <p v-if='isValid' class='error_valid text-center mt-0 subtitle-2 deep-orange--text text--darken-3'>No puedes incluir palabras ofensivas</p>
+        <p v-if='isSent' class='sent_good text-center mt-0 subtitle-2 teal--text'>Tu post ha sido enviado =)</p>
         <div class= 'text-right'>
         <v-btn class='teal white--text' @click="element === 'post' ? addNewPost() : addNewComment()">Enviar</v-btn>
         </div>
@@ -24,7 +26,9 @@ export default {
     return {
       title: null,
       text: null,
-      token: localStorage.getItem('token')
+      token: localStorage.getItem('token'),
+      isValid: false,
+      isSent: false
     }
   },
   props: {
@@ -34,7 +38,7 @@ export default {
   },
   methods: {
     addNewPost () {
-      const result = axios.post(
+      axios.post(
         'https://localhost:3443/blog/posts',
         {
           title: this.title,
@@ -46,12 +50,15 @@ export default {
           }
         }
       )
-      console.log('result status', result.PromiseStatus)
-      // if (result.data.status === 500) {
-      //   console.log('ups error de servidor')
-      // } else if (result.data.status === 200) {
-      //   console.log('MANDA MENSAHE DE QUE SE HAAÑADIDO POST')
-      // }
+        .then((response) => {
+          console.log(response.data)
+          this.isSent = true
+          location.reload()
+        })
+        .catch((error) => {
+          console.log(error)
+          this.isValid = true
+        })
       this.title = ''
       this.text = ''
     },
@@ -71,6 +78,16 @@ export default {
           }
         }
       )
+        .then((response) => {
+          console.log(response.data)
+          this.isValid = false
+          this.isSent = true
+          // location.reload()
+        })
+        .catch((error) => {
+          console.log(error)
+          this.isValid = true
+        })
       console.log('result add new comment', result)
       // if (result.data.status === 500) {
       //   console.log('ups error de servidor')
