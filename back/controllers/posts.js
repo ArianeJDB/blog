@@ -43,12 +43,17 @@ function addNewPost(req, res) {
     post.nickname = req.user.nickname;
     post.title = req.body.title;
     post.text = req.body.text;
+    const isValid = validator.validator(post.text)
 
+    if (isValid) {
+        res.status(403).send({ message: `No puedes hacer comentarios con palabras ofensivas`, forbiddenWords })
+    } else {
     post.save((err, post) => {
         if (err) res.status(500).send({ message: `Error al enviar post: &{err}` })
     })
 
     res.status(200).send({ post })
+}
 }
 
 //AUTH admin y publisher si es suyo
@@ -56,7 +61,11 @@ function editPost(req, res) {
 
     let postId = req.params.postId;
     let bodyUpdated = req.body;
-
+    console.log('llllllll', bodyUpdated)
+    const isValid = validator.validator(bodyUpdated.text)
+    if (isValid) {
+        res.status(403).send({ message: `No puedes hacer comentarios con palabras ofensivas`, forbiddenWords })
+    } else {
     Post.findByIdAndUpdate(postId, bodyUpdated, (err, postUpdated) => {
 
         if (err) {
@@ -67,6 +76,7 @@ function editPost(req, res) {
         } else { res.status(403).send({ message: `Solo puedes editar un post escrito por ti: ${err}` }) }
 
     })
+}
 }
 
 //AUTH admin y publisher si es suyo

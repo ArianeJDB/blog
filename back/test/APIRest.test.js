@@ -17,16 +17,6 @@ let newPost = {
 };
 
 
-test('rejects create post without auth', async (done) => {
-
-    await request.post('/blog/posts')
-        .send(newPost)
-        .expect(401)
-
-    done();
-
-});
-
 describe('posts methods', () => {
     beforeAll(async (done) => {
         await mongoose.connect('mongodb://localhost:27017/blog', { useNewUrlParser: true, useCreateIndex: true }, (err) => {
