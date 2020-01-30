@@ -3,10 +3,10 @@
     <v-card class="text-center pa-5">
       <span class="hidden">{{post._id}}</span>
       <h2 class='display-1'>{{post.title}}</h2>
+      <p>{{post.comment}}</p>
       <h4 class='subtitle-1'>Escrito por: {{post.username}} / <span class="nickname">{{post.nickname}}</span>
       </h4>
       <p class='overline'>({{post.date}})</p>
-      <p>{{post.comment}}</p>
       <v-btn v-if="validationAuthorPost" @click="deleteComment" class='teal white--text'>Borrar comentario</v-btn>
       <!-- <button v-if="validationAuthorComment">Editar comentario</button> -->
       <v-btn v-if='post.title !== undefined' class='deep-orange darken-3'><router-link class='link  white--text' :to="'/postdetail/'+post._id">{{messageComments}}</router-link></v-btn>

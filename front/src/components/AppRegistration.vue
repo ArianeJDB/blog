@@ -1,18 +1,19 @@
 <template>
   <div>
     <app-header />
-    <div class="app-registration mt-12 text-center">
+    <div class='app-registration mt-12 text-center'>
        <v-card-title class='deep-orange--text text--darken-3'>Registro</v-card-title>
         <v-card width='70%'>
-      <v-form method="post" class='mx-12 mt-12'>
+      <v-form method='post' class='mx-12 mt-12'>
         <v-text-field type='text' color='deep-orange darken-3' label='Tu nombre de usuario' v-model='username'>
         </v-text-field>
           <v-text-field type='text' color='deep-orange darken-3' label='Tu nickname' v-model='nickname'>
         </v-text-field>
         <v-text-field type='password' color='deep-orange darken-3' label='Escribe tu contraseña (mínimo 6 caracteres)' v-model='password'>
+          <span class='deep-orange--text text--darken-3'>La contraseña debe tener mínimo 6 caracteres</span>
         </v-text-field>
       </v-form>
-       <v-btn class='my-8 teal white--text' @click="sendRegistration">Enviar</v-btn>
+       <v-btn class='my-8 teal white--text' @click='sendRegistration'>Enviar</v-btn>
        </v-card>
     </div>
   </div>
@@ -27,7 +28,8 @@ export default {
     return {
       username: null,
       nickname: null,
-      password: null
+      password: null,
+      validPassword: true
     }
   },
   methods: {
@@ -41,6 +43,12 @@ export default {
       this.username = ''
       this.nickname = ''
       this.password = ''
+    },
+    passwordLengthValidation () {
+      // const regex = '^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$'
+      // if (!regex.text(this.password)) {
+      //   validPassword = false
+      // }
     }
   },
   props: {},

@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-header />
-    <div class='container'>
+    <div class='container mt-12 pt-12'>
       <div v-if="validateAuthorPost" class='btns_container text-center my-8'>
         <v-btn class='mx-8 deep-orange darken-3 white--text' @click="toggleEditable">Editar Post</v-btn>
         <v-btn class='mx-8 deep-orange darken-3 white--text' @click="deletePost">Borrar post</v-btn>
