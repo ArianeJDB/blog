@@ -1,5 +1,6 @@
 <template>
-  <div v-if="isAuth" class="app-new-post pt-12 mt-12">
+  <div class="app-new-post pt-12 mt-12">
+    <div v-if="isAuth">
     <h2 class="text-center mt-5 headline deep-orange--text text--darken-3">Escribe tu {{element}}</h2>
     <v-form class="mx-12 mt-12">
       <v-text-field
@@ -19,6 +20,7 @@
         >Enviar</v-btn>
       </div>
     </v-form>
+     </div>
   </div>
 </template>
 
@@ -43,7 +45,7 @@ export default {
   },
   props: {
     element: String,
-    isAuth: null,
+    isAuth: Boolean,
     postId: String
   },
   components: {
@@ -53,7 +55,7 @@ export default {
   methods: {
     async addNewPost () {
       if (this.title === '' || this.text === '') {
-        console.lod('nada de mensajes vacíos')
+        this.isEmpty = true
       }
       await axios.post(
         'https://localhost:3443/blog/posts',

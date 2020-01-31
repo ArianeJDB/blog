@@ -6,10 +6,6 @@
 
 export default {
   name: 'app-message-error',
-  data () {
-    return {
-    }
-  },
   props: {
     errorMessage: String
   },

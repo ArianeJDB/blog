@@ -53,7 +53,7 @@ export default {
   name: 'app-post-detail',
   data () {
     return {
-      postData: Object,
+      postData: {},
       postId: null,
       editable: false,
       validateAuthorPost: false,

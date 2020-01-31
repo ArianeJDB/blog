@@ -24,14 +24,14 @@ export default {
   name: 'Home',
   data () {
     return {
-      posts: Array,
-      postId: String,
+      posts: [],
+      postId: '',
       message: 'Posts más recientes',
       element: 'post',
       messageComments: 'Ver comentarios',
-      isAuth: Boolean,
-      usernameAuth: String,
-      nicknameAuth: String
+      isAuth: false,
+      usernameAuth: '',
+      nicknameAuth: ''
     }
   },
   components: {

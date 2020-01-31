@@ -24,9 +24,6 @@
 import AppPostPreview from '../components/AppPostPreview'
 export default {
   name: 'app-posts',
-  data () {
-    return {}
-  },
   props: {
     posts: null,
     goToDetail: Function,
