@@ -43,12 +43,6 @@ export default {
       this.username = ''
       this.nickname = ''
       this.password = ''
-    },
-    passwordLengthValidation () {
-      // const regex = '^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$'
-      // if (!regex.text(this.password)) {
-      //   validPassword = false
-      // }
     }
   },
   props: {},
@@ -58,8 +52,7 @@ export default {
 }
 </script>
 
-<!-- Add 'scoped' attribute to limit CSS to this component only -->
-<style scoped lang='scss'>
+<style scoped >
 .app-registration{
     display: flex;
   flex-direction: column;

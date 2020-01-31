@@ -75,7 +75,7 @@ export default {
 }
 </script>
 
-<style scoped lang='scss'>
+<style scoped >
 textarea{
   margin-top: 50px;
 }

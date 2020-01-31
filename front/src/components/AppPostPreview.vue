@@ -30,7 +30,7 @@ export default {
   methods: {}
 }
 </script>
-<style scoped lang='scss'>
+<style scoped>
 .preview_item {
   width: 40%;
   // border: solid black 1px;

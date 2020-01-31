@@ -64,7 +64,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .app-login{
   display: flex;
   flex-direction: column;
