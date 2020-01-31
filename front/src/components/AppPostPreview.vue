@@ -33,9 +33,6 @@ export default {
 <style scoped>
 .preview_item {
   width: 40%;
-  // border: solid black 1px;
-  // width: 300px;
-  // margin: 10px;
   list-style-type: none;
 }
 .nickname {

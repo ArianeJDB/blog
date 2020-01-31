@@ -1,25 +1,31 @@
 <template>
-  <div v-if='isAuth' class='app-new-post pt-12 mt-12'>
-    <h2 class='text-center mt-5 headline deep-orange--text text--darken-3'>Escribe tu {{element}}</h2>
-      <v-form class='mx-12 mt-12'>
-    <v-text-field class='input_title' color='deep-orange darken-3' label='Tìtulo' v-if="element !== 'comentario'" v-model='title'>
-    </v-text-field>
-        <v-textarea class='input_text' color='deep-orange darken-3' label="Contenido" v-model='text'></v-textarea>
-        <p v-if='isValid' class='error_valid text-center mt-0 subtitle-2 deep-orange--text text--darken-3'>No puedes incluir palabras ofensivas</p>
-        <p v-if='isSent' class='sent_good text-center mt-0 subtitle-2 teal--text'>Tu post ha sido enviado =)</p>
-        <div class= 'text-right'>
-        <v-btn class='teal white--text' @click="element === 'post' ? addNewPost() : addNewComment()">Enviar</v-btn>
-        </div>
-        <!-- <button @click="element === 'post' ? addNewPost() : addNewComment()">Enviar {{element}}</button> -->
-  </v-form>
-<!-- <label for='text'>Contenido de tu {{element}}</label>
-    <textarea name='Nuevo post' id='a' cols='80' rows='10' v-model='text'></textarea>
-    <button @click="element === 'post' ? addNewPost() : addNewComment()">Enviar {{element}}</button> -->
+  <div v-if="isAuth" class="app-new-post pt-12 mt-12">
+    <h2 class="text-center mt-5 headline deep-orange--text text--darken-3">Escribe tu {{element}}</h2>
+    <v-form class="mx-12 mt-12">
+      <v-text-field
+        class="input_title"
+        color="deep-orange darken-3"
+        label="Tìtulo"
+        v-if="element !== 'comentario'"
+        v-model="title"
+      ></v-text-field>
+      <v-textarea class="input_text" color="deep-orange darken-3" label="Contenido" v-model="text"></v-textarea>
+      <app-error-message v-if="isValid" :errorMessage="errorInvalid" />
+      <app-good-message v-if="isSent" :OKMessage="messageSent" />
+      <div class="text-right">
+        <v-btn
+          class="teal white--text"
+          @click="element === 'post' ? addNewPost() : addNewComment()"
+        >Enviar</v-btn>
+      </div>
+    </v-form>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import AppErrorMessage from './AppErrorMessage'
+import AppGoodMessage from './AppGoodMessage'
 export default {
   name: 'app-new-post',
   data () {
@@ -28,13 +34,19 @@ export default {
       text: null,
       token: localStorage.getItem('token'),
       isValid: false,
-      isSent: false
+      isSent: false,
+      errorInvalid: 'No puedes incluir palabras ofensivas',
+      messageSent: 'Tu post ha sido enviado =)'
     }
   },
   props: {
     element: String,
     isAuth: null,
     postId: String
+  },
+  components: {
+    AppErrorMessage,
+    AppGoodMessage
   },
   methods: {
     addNewPost () {
