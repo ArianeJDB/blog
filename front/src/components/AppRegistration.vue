@@ -9,7 +9,7 @@
         </v-text-field>
           <v-text-field type='text' color='deep-orange darken-3' label='Tu nickname' v-model='nickname'>
         </v-text-field>
-        <v-text-field type='password' color='deep-orange darken-3' label='Escribe tu contraseña (mínimo 6 caracteres)' v-model='password'>
+        <v-text-field type='password' color='deep-orange darken-3' label='Escribe tu contraseña' v-model='password'>
           <span class='deep-orange--text text--darken-3'>La contraseña debe tener mínimo 6 caracteres</span>
         </v-text-field>
       </v-form>
