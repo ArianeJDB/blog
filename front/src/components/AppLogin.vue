@@ -58,7 +58,7 @@ export default {
         method: 'post'
       })
         .then((response) => {
-          console.log(response)
+          this.errorMessage = ''
           const token = response.data.token
           const userRole = response.data.userData.role
           const username = response.data.userData.username
@@ -69,7 +69,7 @@ export default {
           window.location = '/'
         })
         .catch((error) => {
-          if (error) { this.isInvalid = true }
+          if (error.response.status === 401) { this.isInvalid = true }
         })
     },
     addDataLS (token, userRole, username, nickname) {
