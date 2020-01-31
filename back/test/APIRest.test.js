@@ -12,8 +12,8 @@ let tokenAdmin;
 let tokenPublisher;
 let postId;
 let newPost = {
-    title: 'titulo a mi post',
-    text: 'contenido de mi post'
+    title: 'titulo test',
+    text: 'contenido test'
 };
 
 

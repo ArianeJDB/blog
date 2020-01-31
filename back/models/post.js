@@ -12,7 +12,6 @@ const CommentSchema = new Schema({
     
 })
 
-
 const PostSchema = new Schema({
     username: String,
     nickname: String,

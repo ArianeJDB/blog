@@ -67,8 +67,6 @@ passport.use(new JwtStrategy(jwtOpts, async (payload, done) => {
    console.log('CONECTADO a https 3443')
 })
 
-
-
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors()) 
@@ -78,5 +76,4 @@ app.use('/login', login)
 app.use('/register', register)
 app.use('/admins', admins)
 
-// module.exports = {connectPort}; 
 module.exports = app

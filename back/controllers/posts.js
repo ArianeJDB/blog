@@ -4,7 +4,6 @@ const Post = require('../models/post');
 const validator = require('../validator');
 const forbiddenWords = require('../validator');
 
-//no auth
 function getPosts(req, res) {
     Post.find({}, { comments: 0 }, (err, posts) => {
 
@@ -23,7 +22,7 @@ function deleteAllPosts(req, res) {
         res.status(200).send({ message: 'se han borrado todos los posts' })
     })
 }
-//no auth
+
 function getOnePost(req, res) {
     let postId = req.params.postId
 
@@ -35,7 +34,6 @@ function getOnePost(req, res) {
     })
 }
 
-//AUTH quien sea
 function addNewPost(req, res) {
 
     let post = new Post();
@@ -56,12 +54,10 @@ function addNewPost(req, res) {
 }
 }
 
-//AUTH admin y publisher si es suyo
 function editPost(req, res) {
 
     let postId = req.params.postId;
     let bodyUpdated = req.body;
-    console.log('llllllll', bodyUpdated)
     const isValid = validator.validator(bodyUpdated.text)
     if (isValid) {
         res.status(403).send({ message: `No puedes hacer comentarios con palabras ofensivas`, forbiddenWords })
@@ -79,13 +75,10 @@ function editPost(req, res) {
 }
 }
 
-//AUTH admin y publisher si es suyo
 function deleteOnePost(req, res) {
     let postId = req.params.postId
 
     Post.findById(postId, (err, post) => {
-        console.log(post)
-
         if (err) res.status(500).send({ message: `Error al borrar este post: ${err}` })
         
         if (req.user.role === 'admin') {
@@ -105,7 +98,6 @@ function deleteOnePost(req, res) {
     })
 }
 
-//AUTH admin y publisher si es suyo
 function deleteComment(req, res) {
 
     let postId = req.params.postId
@@ -134,12 +126,11 @@ function deleteComment(req, res) {
         )
     })
 }
-//AUTH quien sea
+
 function addComment(req, res) {
 
     let postId = req.params.postId
     let comment = req.body.comments
-
 
     comment.forEach(item => {
         let username = req.user.username;
@@ -192,7 +183,6 @@ function editComment(req, res) {
         }
     })
 }
-
 
 module.exports = {
     getPosts,

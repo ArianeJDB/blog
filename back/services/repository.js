@@ -6,9 +6,6 @@ const fs = require('fs');
 const https = require('https');
 const admins = require('../controllers/admins')
 const app = require('../app')
-
-
-
     
     mongoose.connect('mongodb://localhost:27017/blog', {
         useUnifiedTopology: true,

@@ -299,6 +299,16 @@
 		{
 			"name": "COMMENT-POST push new comment",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFyaSIsImlhdCI6MTU3OTgxMDMxNSwiZXhwIjoxNTc5ODQwMzE1fQ.hM9OtQMOE9tZcZfzERh6_nWVtOGLx3ta23N-Q019SYI",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -310,7 +320,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \n        \"comments\": [\n        \t\t{\n        \t\t\t\"nickname\": \"pan\",\n        \t\t\t\"comment\": \"hola\"\n        \t\t}\n        \t]\n    }",
+					"raw": "{\n        \n        \"comments\": [\n        \t\t{\n        \t\t\t\"comment\": \"ola k ase\"\n        \t\t}\n        \t]\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -318,7 +328,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:3443/blog/posts/5e0e2133e6fe5f361503a746",
+					"raw": "https://localhost:3443/blog/posts/5e25eeb58cf72b4b189656d0",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -327,7 +337,7 @@
 					"path": [
 						"blog",
 						"posts",
-						"5e0e2133e6fe5f361503a746"
+						"5e25eeb58cf72b4b189656d0"
 					]
 				}
 			},
@@ -591,6 +601,36 @@
 					"path": [
 						"words",
 						"5e171a93893813362f946ae0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "blogDELETEALL",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFyaSIsImlhdCI6MTU4MDQ1OTU5MSwiZXhwIjoxNTgwNDg5NTkxfQ.PFQ8GQnPcZ9bVXG7LGiRxOiZ2InccP4lcFsKWgHzAcU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:3443/blog/posts",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3443",
+					"path": [
+						"blog",
+						"posts"
 					]
 				}
 			},
