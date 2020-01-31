@@ -54,7 +54,6 @@ export default {
       if (localStorage.getItem('token') !== null) {
         auth = true
       } else {
-        console.log('No está auth')
         auth = false
       }
       this.isAuth = auth

@@ -115,7 +115,6 @@ export default {
     },
     deletePost () {
       if (this.validateAuthorPost) {
-        console.log('si lo puedes borrar')
         axios
           .delete('https://localhost:3443/blog/posts/' + this.postId, {
             headers: {
@@ -131,7 +130,6 @@ export default {
       const trigger = e.currentTarget.parentElement
       const commentId = trigger.querySelector('.hidden').textContent
       if (this.validateAuthorPost) {
-        console.log('si lo puedes borrar')
         axios
           .delete('https://localhost:3443/blog/posts/' + this.postId + '/comments/' + commentId, {
             headers: {

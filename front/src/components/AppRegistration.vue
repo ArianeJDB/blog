@@ -46,7 +46,6 @@ export default {
       } else {
         axios.post('https://localhost:3443/register', params)
           .then(response => {
-            console.log('RESDATA', response.status)
             this.isSent = true
           })
           .catch((error) => {
