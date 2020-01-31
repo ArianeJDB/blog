@@ -18,7 +18,7 @@ describe('Test end to end', function () {
         cy.get('.input_text')
             .type('comentario pacífico')
         cy.contains('Enviar').click({ force: true })
-        cy.contains('p', 'Tu post ha sido enviado =)')
+        cy.contains('.sent_good', 'Tu post ha sido enviado =)')
 
         })
 
