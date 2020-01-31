@@ -10,11 +10,12 @@
           <v-text-field type='text' color='deep-orange darken-3' label='Tu nickname' v-model='nickname'>
         </v-text-field>
         <v-text-field type='password' color='deep-orange darken-3' label='Escribe tu contraseña' v-model='password'>
-          <span class='deep-orange--text text--darken-3'>La contraseña debe tener mínimo 6 caracteres</span>
         </v-text-field>
       </v-form>
        <v-btn class='my-8 teal white--text' @click='sendRegistration'>Enviar</v-btn>
        </v-card>
+       <app-error-message v-if='isInvalid' :errorMessage='errorEmpty' />
+       <app-good-message v-if='isSent' :OKMessage='messageSent' />
     </div>
   </div>
 </template>
@@ -22,32 +23,48 @@
 <script>
 import axios from 'axios'
 import AppHeader from '../components/AppHeader.vue'
+import AppErrorMessage from './AppErrorMessage'
+import AppGoodMessage from './AppGoodMessage'
 export default {
   name: 'app-registration',
   data () {
     return {
-      username: null,
-      nickname: null,
-      password: null,
-      validPassword: true
+      username: '',
+      nickname: '',
+      password: '',
+      isInvalid: false,
+      errorEmpty: 'Ups! parece que ha habido un error, asegúrate de rellenar todos los campos',
+      isSent: false,
+      messageSent: 'Te has registrado correctamente =)'
     }
   },
   methods: {
     sendRegistration () {
       const params = { username: this.username, nickname: this.nickname, password: this.password }
-
-      axios.post('https://localhost:3443/register', params)
-        .then(res => {
-          console.log('RESDATA', res.status)
-        })
-      this.username = ''
-      this.nickname = ''
-      this.password = ''
+      if (this.username === '' || this.nickname === '' || this.password === '') {
+        this.isInvalid = true
+      } else {
+        axios.post('https://localhost:3443/register', params)
+          .then(response => {
+            console.log('RESDATA', response.status)
+            this.isSent = true
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+        this.isInvalid = false
+        this.isSent = true
+        this.username = ''
+        this.nickname = ''
+        this.password = ''
+      }
     }
   },
   props: {},
   components: {
-    AppHeader
+    AppHeader,
+    AppErrorMessage,
+    AppGoodMessage
   }
 }
 </script>

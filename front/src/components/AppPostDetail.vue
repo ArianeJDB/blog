@@ -1,34 +1,44 @@
 <template>
   <div>
     <app-header />
-    <div class='container mt-12 pt-12'>
-      <div v-if="validateAuthorPost" class='btns_container text-center my-8'>
-        <v-btn class='mx-8 deep-orange darken-3 white--text' @click="toggleEditable">Editar Post</v-btn>
-        <v-btn class='mx-8 deep-orange darken-3 white--text' @click="deletePost">Borrar post</v-btn>
+    <div class="container mt-12 pt-12">
+      <div v-if="validateAuthorPost" class="btns_container text-center my-8">
+        <v-btn class="mx-8 deep-orange darken-3 white--text" @click="toggleEditable">Editar Post</v-btn>
+        <v-btn class="mx-8 deep-orange darken-3 white--text" @click="deletePost">Borrar post</v-btn>
       </div>
-        <v-card width='50%' class='text-center pa-5 mt-5'>
-        <p v-if="editable" class=' deep-orange--text text--darken-3 mb-0'>Puedes editar el título haciendo click en él</p>
-        <h2 class='display-1' :contenteditable="editable">{{postData.title}}</h2>
-        <p class='overline'>({{postData.date}})</p>
-        <p v-if="editable" class=' deep-orange--text text--darken-3 mb-0'>Puedes editar el texto haciendo click en él</p>
+      <v-card width="50%" class="text-center pa-5 mt-5">
+        <p
+          v-if="editable"
+          class="deep-orange--text text--darken-3 mb-0"
+        >Puedes editar el título haciendo click en él</p>
+        <h2 class="title display-2" :contenteditable="editable">{{postData.title}}</h2>
+        <p class="overline">({{postData.date}})</p>
+        <p
+          v-if="editable"
+          class="deep-orange--text text--darken-3 mb-0"
+        >Puedes editar el texto haciendo click en él</p>
         <p class="text headline mt-0" :contenteditable="editable">{{postData.text}}</p>
-         <h4 class='subtitle-1 mb-5'>Escrito por: {{postData.username}} / <span class="nickname">{{postData.nickname}}</span>
-      </h4>
-        <v-btn v-if="editable" class='teal white--text' @click="editPost">Enviar post editado</v-btn>
+        <h4 class="subtitle-1 mb-5">
+          Escrito por: {{postData.username}} /
+          <span class="nickname">{{postData.nickname}}</span>
+        </h4>
+        <v-btn v-if="editable" class="teal white--text" @click="editPost">Enviar post editado</v-btn>
+        <app-good-message v-if='isSent' :OKmessage='messageSent' />
+        <app-error-message v-if='isInvalid' :errorMessage='errorMessage' />
       </v-card>
-      </div>
-      <app-new-post :element="element" :isAuth="isAuth" :postId="postId" />
-      <app-posts
-        :posts="postData.comments"
-        :message="message"
-        v-if="postData.comments"
-        :element="element"
-        :messageComments="messageComments"
-        :validationAuthorPost="validateAuthorPost"
-        :deleteComment="deleteComment"
-        :validationAuthorComment="validateAuthorComment"
-      />
     </div>
+    <app-new-post :element="element" :isAuth="isAuth" :postId="postId" />
+    <app-posts
+      :posts="postData.comments"
+      :message="message"
+      v-if="postData.comments"
+      :element="element"
+      :messageComments="messageComments"
+      :validationAuthorPost="validateAuthorPost"
+      :deleteComment="deleteComment"
+      :validationAuthorComment="validateAuthorComment"
+    />
+  </div>
 </template>
 
 <script>
@@ -36,6 +46,8 @@ import axios from 'axios'
 import AppPosts from '../components/AppPosts'
 import AppHeader from '../components/AppHeader'
 import AppNewPost from '../components/AppNewPost'
+import AppGoodMessage from './AppGoodMessage'
+import AppErrorMessage from './AppErrorMessage'
 const token = localStorage.getItem('token')
 export default {
   name: 'app-post-detail',
@@ -49,13 +61,19 @@ export default {
       delete: false,
       message: 'Comentarios',
       element: 'comentario',
-      messageComments: ''
+      messageComments: '',
+      isSent: false,
+      isInvalid: false,
+      messageSent: 'Tu post ha sido editado =)',
+      errorMessage: 'Ups! ha habido un error, asegúrate de haber rellenado todos los campos'
     }
   },
   components: {
     AppHeader,
     AppPosts,
-    AppNewPost
+    AppNewPost,
+    AppGoodMessage,
+    AppErrorMessage
   },
   props: {
     isAuth: Boolean,
@@ -70,11 +88,11 @@ export default {
       })
     },
     async editPost () {
-      const titleEl = document.querySelector('h3')
+      const titleEl = document.querySelector('.title')
       const textEl = document.querySelector('.text')
       const titleValue = titleEl.textContent
       const textValue = textEl.textContent
-      const result = await axios.put(
+      await axios.put(
         'https://localhost:3443/blog/posts/' + this.postId,
         {
           title: titleValue,
@@ -86,10 +104,14 @@ export default {
           }
         }
       )
-      if (result.status === 500) {
-        console.log('ups error de servidor')
-      }
-      return result.status
+        .then((response) => {
+          this.isSent = true
+          location.reload()
+        })
+        .catch((error) => {
+          console.log(error)
+          this.isInvalid = true
+        })
     },
     deletePost () {
       if (this.validateAuthorPost) {
@@ -101,11 +123,8 @@ export default {
             }
           })
           .then(res => {
-            console.log(res.data.message)
             document.location.href = '/'
           })
-      } else {
-        console.log('no puedes borrar un post que no es tuyo')
       }
     },
     deleteComment (e) {
@@ -123,15 +142,11 @@ export default {
             console.log(res.data.message)
           })
         window.location.reload(false)
-      } else {
-        console.log('no puedes borrar comentarios de un post que no es tuyo')
       }
     },
     toggleEditable () {
       if (this.validateAuthorPost) {
         this.editable = !this.editable
-      } else {
-        console.log('modal no puedes')
       }
     },
     async validationAuthorPost () {
@@ -140,7 +155,6 @@ export default {
       const username = localStorage.getItem('username')
       const usernamePost = await this.postData.username
       if (username === usernamePost || role === 'admin') {
-        console.log('es mi entrada y puedo borrar comentarios')
         validated = true
       } else {
         validated = false
@@ -153,7 +167,6 @@ export default {
       const username = localStorage.getItem('username')
       this.postData.comments.forEach(comment => {
         if (comment.username === username || role === 'admin') {
-          console.log('Soy el autor de este comentario y puedo borrarlo')
           validated = true
         } else {
           validated = false
@@ -170,7 +183,6 @@ export default {
 }
 </script>
 
-<!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped >
 .comments_container {
   border: solid 1px black

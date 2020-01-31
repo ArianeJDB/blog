@@ -46,7 +46,7 @@ export default {
 
 <style scoped>
 .posts_list{
-      text-align: center;
+    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
