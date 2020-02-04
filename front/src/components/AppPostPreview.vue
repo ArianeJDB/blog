@@ -1,4 +1,5 @@
 <template>
+<v-flex xs12 md6 lg4>
   <li v-if="post !== undefined" class="preview_item ma-5">
     <v-card class="text-center pa-5">
       <span class="hidden">{{post._id}}</span>
@@ -19,6 +20,7 @@
       </v-btn>
     </v-card>
   </li>
+</v-flex>
 </template>
 
 <script>
@@ -39,7 +41,7 @@ export default {
 </script>
 <style scoped>
 .preview_item {
-  width: 40%;
+  /* width: 50%; */
   list-style-type: none;
 }
 .nickname {

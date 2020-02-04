@@ -3,19 +3,21 @@
     <div v-if="element === 'comentario'">
     </div>
     <h2 class='text-center my-7 headline deep-orange--text text--darken-3'>{{message}}:</h2>
-    <ul class='posts_list'>
-      <app-post-preview
-        v-for='(post, index) in posts'
-        :key='index'
-        :id='index'
-        :post='post'
-        :postId='postId'
-        :element='element'
-        :messageComments='messageComments'
-        :validationAuthorPost='validationAuthorPost'
-        :validationAuthorComment='validationAuthorComment'
-        :deleteComment='deleteComment'
-      />
+      <ul class='px-12'>
+        <v-layout row>
+          <app-post-preview
+            v-for='(post, index) in posts'
+            :key='index'
+            :id='index'
+            :post='post'
+            :postId='postId'
+            :element='element'
+            :messageComments='messageComments'
+            :validationAuthorPost='validationAuthorPost'
+            :validationAuthorComment='validationAuthorComment'
+            :deleteComment='deleteComment'
+          />
+      </v-layout>
     </ul>
   </main>
 </template>
@@ -43,10 +45,10 @@ export default {
 
 <style scoped>
 .posts_list{
-    text-align: center;
+    /* text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 }
 </style>

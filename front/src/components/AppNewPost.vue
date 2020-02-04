@@ -72,7 +72,7 @@ export default {
         .then((response) => {
           console.log(response.data)
           this.isSent = true
-          location.reload()
+          // location.reload()
         })
         .catch((error) => {
           console.log(error.response)
