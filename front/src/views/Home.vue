@@ -50,21 +50,17 @@ export default {
   },
   methods: {
     validateAuth () {
-      let auth
       if (localStorage.getItem('token') !== null) {
-        auth = true
+        this.isAuth = true
       } else {
-        auth = false
+        this.isAuth = false
       }
-      this.isAuth = auth
       return this.isAuth
     },
     whoIsAuth () {
       if (localStorage.getItem('username') !== null) {
         this.usernameAuth = localStorage.getItem('username')
         this.nicknameAuth = localStorage.getItem('nickname')
-      } else {
-        this.usernameAuth = 'desconocido'
       }
     },
     goHome () {

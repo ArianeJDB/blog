@@ -148,29 +148,25 @@ export default {
       }
     },
     async validationAuthorPost () {
-      let validated
       const role = localStorage.getItem('role')
       const username = localStorage.getItem('username')
       const usernamePost = await this.postData.username
       if (username === usernamePost || role === 'admin') {
-        validated = true
+        this.validateAuthorPost = true
       } else {
-        validated = false
+        this.validateAuthorPost = false
       }
-      this.validateAuthorPost = validated
     },
     async validationAuthorComment () {
-      let validated
       const role = localStorage.getItem('role')
       const username = localStorage.getItem('username')
       this.postData.comments.forEach(comment => {
         if (comment.username === username || role === 'admin') {
-          validated = true
+          this.validateAuthorComment = true
         } else {
-          validated = false
+          this.validateAuthorComment = false
         }
       })
-      this.validateAuthorComment = validated
     }
   },
   async created () {

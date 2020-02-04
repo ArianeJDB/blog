@@ -8,8 +8,6 @@ export default {
   name: 'app-message-error',
   props: {
     errorMessage: String
-  },
-  methods: {
   }
 }
 </script>

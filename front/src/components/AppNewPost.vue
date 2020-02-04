@@ -82,8 +82,6 @@ export default {
             this.isEmpty = true
           }
         })
-      // this.title = ''
-      // this.text = ''
     },
     addNewComment () {
       axios.post(
