@@ -11,7 +11,7 @@
           v-if="editable"
           class="deep-orange--text text--darken-3 mb-0"
         >Puedes editar el título haciendo click en él</p>
-        <h2 class="title display-2" :contenteditable="editable">{{postData.title}}</h2>
+        <h2 class="headline font-weight-bold" :contenteditable="editable">{{postData.title}}</h2>
         <p class="overline">({{postData.date}})</p>
         <p
           v-if="editable"
