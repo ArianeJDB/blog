@@ -35,7 +35,8 @@ export default {
     messageComments: String,
     validationAuthorPost: Boolean,
     deleteComment: Function,
-    validationAuthorComment: Boolean
+    validationAuthorComment: Boolean,
+    date: String
   },
   components: {
     AppPostPreview
@@ -44,11 +45,4 @@ export default {
 </script>
 
 <style scoped>
-.posts_list{
-    /* text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
-}
 </style>

@@ -76,8 +76,7 @@ export default {
     AppErrorMessage
   },
   props: {
-    isAuth: Boolean,
-    newComment: null
+    isAuth: Boolean
   },
   methods: {
     getOnePost (idParam) {
@@ -167,6 +166,18 @@ export default {
           this.validateAuthorComment = false
         }
       })
+    },
+    async formatDate () {
+      // const monthNames = [
+      //   'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+      // ]
+      await console.log('dddsdsd', this.postData.comments)
+      // const date = new Date(dateStr)
+      // const day = date.getDate()
+      // const monthIndex = date.getMonth()
+      // const year = date.getFullYear()
+      // const dateFormated = day + ' de ' + monthNames[monthIndex] + ' del ' + year
+      // await console.log('chao???', dateFormated)
     }
   },
   async created () {

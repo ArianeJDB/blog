@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class='home'>
     <app-header :goHome='goHome' :username='usernameAuth' :nickname='nicknameAuth' />
     <app-new-post
       :element='element'

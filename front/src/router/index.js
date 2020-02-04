@@ -17,7 +17,7 @@ const routes = [
     path: '/postdetail/:id',
     name: 'postdetail',
     component: AppPostDetail,
-    props: { newComment: String, isAuth: isAuth }
+    props: { isAuth: isAuth }
   },
   {
     path: '/registration',
@@ -36,5 +36,11 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+// router.beforeEach((to, from, next) => {
+//   if (isAuth) next('/login')
+//   else next()
+// }
+// )
 
 export default router
