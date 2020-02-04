@@ -46,7 +46,7 @@
       </router-link>
         <div class='icon_container' @click='logout'>
             <v-icon class="mx-6">mdi-exit-run</v-icon>
-            <span class='mx-3'>Salir</span>
+            <span>Salir</span>
         </div>
       </div>
     </v-navigation-drawer>
