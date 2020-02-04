@@ -12,7 +12,7 @@
           class="deep-orange--text text--darken-3 mb-0"
         >Puedes editar el título haciendo click en él</p>
         <h2 class="headline font-weight-bold" :contenteditable="editable">{{postData.title}}</h2>
-        <p class="overline">({{postData.date}})</p>
+        <p class="overline">({{this.setDateStr()}})</p>
         <p
           v-if="editable"
           class="deep-orange--text text--darken-3 mb-0"
@@ -167,17 +167,13 @@ export default {
         }
       })
     },
-    async formatDate () {
-      // const monthNames = [
-      //   'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-      // ]
-      await console.log('dddsdsd', this.postData.comments)
-      // const date = new Date(dateStr)
-      // const day = date.getDate()
-      // const monthIndex = date.getMonth()
-      // const year = date.getFullYear()
-      // const dateFormated = day + ' de ' + monthNames[monthIndex] + ' del ' + year
-      // await console.log('chao???', dateFormated)
+    setDateStr () {
+      const str = this.postData.date
+      const date = new Date(str)
+      const day = date.getDate()
+      const month = date.getMonth() + 1
+      const year = date.getFullYear()
+      return day + '/' + month + '/' + year
     }
   },
   async created () {

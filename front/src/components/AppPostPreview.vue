@@ -9,7 +9,7 @@
         Escrito por: {{post.username}} /
         <span class="nickname">{{post.nickname}}</span>
       </h4>
-      <p class="overline">({{post.date}})</p>
+      <p class="overline">({{this.setDateStr()}})</p>
       <v-btn
         v-if="validationAuthorPost"
         @click="deleteComment"
@@ -36,7 +36,16 @@ export default {
     validationAuthorPost: Boolean,
     deleteComment: Function
   },
-  methods: {}
+  methods: {
+    setDateStr () {
+      const str = this.post.date
+      const date = new Date(str)
+      const day = date.getDate()
+      const month = date.getMonth() + 1
+      const year = date.getFullYear()
+      return day + '/' + month + '/' + year
+    }
+  }
 }
 </script>
 <style scoped>
