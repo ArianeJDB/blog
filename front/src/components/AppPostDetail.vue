@@ -6,7 +6,7 @@
         <v-btn class="mx-8 deep-orange darken-3 white--text" @click="toggleEditable">Editar Post</v-btn>
         <v-btn class="mx-8 deep-orange darken-3 white--text" @click="deletePost">Borrar post</v-btn>
       </div>
-      <v-card width="50%" class="text-center pa-5 mt-5">
+      <v-card width="90%" class="text-center pa-5 mt-5">
         <p
           v-if="editable"
           class="deep-orange--text text--darken-3 mb-0"
@@ -17,7 +17,7 @@
           v-if="editable"
           class="deep-orange--text text--darken-3 mb-0"
         >Puedes editar el texto haciendo click en él</p>
-        <p class="text headline mt-0" :contenteditable="editable">{{postData.text}}</p>
+        <p class="text subtitle-1 mt-0" :contenteditable="editable">{{postData.text}}</p>
         <h4 class="subtitle-1 mb-5">
           Escrito por: {{postData.username}} /
           <span class="nickname">{{postData.nickname}}</span>
