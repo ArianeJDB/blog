@@ -5,19 +5,28 @@ import AppPostDetail from '../components/AppPostDetail'
 import AppRegistration from '../components/AppRegistration'
 import AppLogin from '../components/AppLogin'
 
+function validateAuth () {
+  let isAuth
+  if (localStorage.getItem('token') !== null) {
+    isAuth = true
+  } else {
+    isAuth = false
+  }
+  return isAuth
+}
 Vue.use(VueRouter)
-const isAuth = Home.methods.validateAuth()
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: Home,
+    props: { isAuth: validateAuth() }
   },
   {
     path: '/postdetail/:id',
     name: 'postdetail',
     component: AppPostDetail,
-    props: { isAuth: isAuth }
+    props: { isAuth: validateAuth() }
   },
   {
     path: '/registration',
@@ -36,11 +45,5 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
-// router.beforeEach((to, from, next) => {
-//   if (isAuth) next('/login')
-//   else next()
-// }
-// )
 
 export default router

@@ -29,10 +29,12 @@ export default {
       message: 'Posts más recientes',
       element: 'post',
       messageComments: 'Ver comentarios',
-      isAuth: false,
       usernameAuth: '',
       nicknameAuth: ''
     }
+  },
+  props: {
+    isAuth: null
   },
   components: {
     AppHeader,
@@ -45,18 +47,9 @@ export default {
       .then(res => {
         this.posts = res.data.posts
       })
-    this.validateAuth()
     this.whoIsAuth()
   },
   methods: {
-    validateAuth () {
-      if (localStorage.getItem('token') !== null) {
-        this.isAuth = true
-      } else {
-        this.isAuth = false
-      }
-      return this.isAuth
-    },
     whoIsAuth () {
       if (localStorage.getItem('username') !== null) {
         this.usernameAuth = localStorage.getItem('username')
