@@ -1,6 +1,6 @@
 <template>
   <nav class="app-header">
-    <v-toolbar class="teal m" height="100px">
+    <v-toolbar class="teal menu_container" height="100px">
       <router-link :to="'/'">
         <img src="../assets/logo.png" alt />
       </router-link>
@@ -22,23 +22,33 @@
             <span class='mx-3'>Entrar</span>
           </div>
         </router-link>
+        <div class='logout' @click='logout'>
+            <v-icon>mdi-exit-run</v-icon>
+            <span class='mx-3'>Salir</span>
+        </div>
       </div>
       <v-spacer class="hidden-lg-and-up"></v-spacer>
       <v-icon class="black--text hidden-lg-and-up" @click="drawer = !drawer">mdi-menu</v-icon>
     </v-toolbar>
     <v-navigation-drawer right v-model="drawer" app class="deep-orange darken-3 hidden-lg-and-up">
+      <div class='drawer_container'>
       <router-link :to="'/registration'" class="link">
-        <div class="registration_container my-10">
+        <div class="icon_container">
           <v-icon class="mx-6">mdi-account-plus</v-icon>
           <span>Regístrate</span>
         </div>
       </router-link>
       <router-link :to="'/login'" class="link">
-        <div class="login_container">
+        <div class="icon_container">
           <v-icon class="mx-6">mdi-login-variant</v-icon>
           <span>Entrar</span>
         </div>
       </router-link>
+        <div class='icon_container' @click='logout'>
+            <v-icon class="mx-6">mdi-exit-run</v-icon>
+            <span class='mx-3'>Salir</span>
+        </div>
+      </div>
     </v-navigation-drawer>
   </nav>
 </template>
@@ -47,7 +57,8 @@
 export default {
   data () {
     return {
-      drawer: false
+      drawer: false,
+      isOut: false
     }
   },
   name: 'app-header',
@@ -55,6 +66,13 @@ export default {
     goHome: Function,
     username: null,
     nickname: null
+  },
+  methods: {
+    logout () {
+      localStorage.clear()
+      this.isOut = true
+      window.location = '/'
+    }
   }
 }
 </script>
@@ -67,30 +85,30 @@ img {
   text-decoration: none;
   color: black;
 }
-.registration_container {
+.icon_container {
   display: flex;
+  margin: 20px;
 }
 .login_container {
-  display: flex;
-}
-.welcome_container{
-  border-bottom: solid 1px black;
-  height: 150px;
-}
-.welcome_big{
   display: flex;
 }
 .menu {
   display: flex;
   flex-direction: row;
 }
-.usernick{
-  border-right: solid 1px black;
-}
-.m{
+.menu_container{
   position: fixed;
   top:0;
   width: 100%;
   z-index: 1
+}
+.logout{
+  display: flex;
+  cursor: pointer;
+}
+.drawer_container{
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
 }
 </style>
