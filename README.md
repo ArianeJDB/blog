@@ -81,12 +81,13 @@ It has to be implemented with VUE.js and:
 
 ### Tecnical aspects:
 Should have `at least` 4 modules:
-    * app.js: with Express server
-    * controller.js: API REST methods
-    * router.js: implemented with express
-    * reppsitory.js: access to DDBB (with MongoDB)
-    * validator.js: to verify offensive words contained in the comments.
-    * postman.js: with at least one example of each enpoint
+
+    1. app.js: with Express server
+    2. controller.js: API REST methods
+    3. router.js: implemented with express
+    4. reppsitory.js: access to DDBB (with MongoDB)
+    5. validator.js: to verify offensive words contained in the comments.
+    6. postman.js: with at least one example of each enpoint
 
 
 ### QA:
