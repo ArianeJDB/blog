@@ -100,11 +100,13 @@ Should have 3 types of tests:
 
 #### Unit test:
 Test the validator with **Jest**:
+
     - Test a comment with offensive words
     - Test a cpmment without offensive words
 
 #### System test:
-Test the API REST methods:  
+Test the API REST methods:
+
     - Test create a new post
     - Test add a comment with offensive words
     - Test add a comment without offensive words
@@ -112,6 +114,7 @@ Test the API REST methods:
 
 #### End2end test:
 With Cypress.io:
+
     - Test create a new post
     - Test add a comment with offensive words
     - Test add a comment without offensive words
