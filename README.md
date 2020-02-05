@@ -77,6 +77,7 @@ Will be implemented with **Basic Auth + JWT**
 
 ### UI:
 It has to be implemented with VUE.js and:
+
     - Vuetify
     - Principal view should have a list of post's titles
     - Each title will have a link that shows a new view with the post content
@@ -156,12 +157,14 @@ Cada entrada contiene los siguientes campos: Nombre del autor, Nickname del auto
 
 #### Comment:
 Cada comentario contiene los siguientes campos: Nickname del autor del comentario, Contenido, Fecha del comentario.
+
 #### OffensiveWord:
 Cada palabra tendrá asociada un campo “level” indicando la gravedad de la palabra de 1 a 5.
 
 ### API REST endpoints
 
 #### Entradas y comentarios
+
     - Recuperación de todas las entradas (sin comentarios)
     - Recuperación de una entrada (con comentarios)
     - Creación de una nueva entrada (sin comentarios)
@@ -172,6 +175,7 @@ Cada palabra tendrá asociada un campo “level” indicando la gravedad de la p
     - Borrado de un comentario existente en una entrada
 
 #### Palabras ofensivas:
+
     - Creación, listado, borrado y modificación de una palabra ofensiva.
 
 👀 Si el comentario que se intenta incorporar contiene alguna de las palabras ofensivas registradas en la BBDD, el comentario no se podrá crear. La petición REST será rechazada con un código de error y se devolverá un JSON con información sobre la palabra ofensiva (o palabras) y su nivel. Las palabras ofensivas estarán almacenadas en la BBDD. Si al arrancar la aplicación se detecta que no hay palabras ofensivas en la BBDD, la aplicación deberá insertar un juego de palabras por defecto.
@@ -186,6 +190,7 @@ Los usuarios de tipo admin podrán realizar cualquier operación de la API REST.
 
 #### Autenticados: Publisher: 
 Los usuarios de tipo publisher podrán:
+
     - Crear entradas del blog. 
     - Borrar y modificar únicamente las entradas que hayan creado ellos.
     - Borrar comentarios de sus entradas.
@@ -202,6 +207,7 @@ El mecanismo de autenticación de usuarios puede ser Basic Auth + Tokens JWT
 
 ### UI:
 Se deberá crear una interfaz de usuario con Vue que cumpla con las siguientes directrices:
+
     - Estará implementada con Vuetify
     - La vista principal tendrá un listado con el título de cada uno de los posts
     - Cada título será un link que navegará a una página con el contenido del post
@@ -211,6 +217,7 @@ Se deberá crear una interfaz de usuario con Vue que cumpla con las siguientes d
 
 ### Aspectos técnicos:
 La aplicación backend estará dividida en, al menos, 4 módulos Node: 
+
     - app.js: Tendrá el servidor Express. 
     - controller.js: Tendrá definidos los métodos de la API REST. Se usará un router que será configurado en Express.
     - repository.js: Módulo que contendrá el código de acceso a la base de datos.
@@ -224,11 +231,13 @@ La persistencia se implementará con MongoDB de forma obligatoria. Se podrán us
 Se deberán implementar diferentes tipos de tests para controlar la calidad de la aplicación:
 #### Backend: Tests unitarios
 Tests unitarios del validador con Jest. Estos tests, ya que son unitarios, no deberán acceder a la bbdd real. Es decir, hay que crear un doble del módulo que permite acceder a la base de datos. La funcionalidad que debería verificarse en los tests es:
+
     - Comentario con palabras ofensivas: Con este test se debe verificar que si el comentario tiene una palabra ofensiva, se debe generar el error correspondiente. 
     - Comentario sin palabras ofensivas: Con este test se debe verificar que si el comentario no tiene palabras ofensivas debe obtenerse una validación OK.
 
 #### Tests de sistema
 Tests de sistema de la API REST. Se deberán verificar algunas de las operaciones disponibles en la API REST:
+
     - Crear un post
     - Añadir un comentario con palabras ofensivas
     - Añadir un comentario sin palabras ofensivas
