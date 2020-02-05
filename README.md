@@ -1,7 +1,7 @@
 # ROCK|BLOG. Full Stack MEVN project
 
 This is my first MEVN project and I'm very prouf of it! 🤗
-It's a blog that I've been doing while I was in classes (Node.js, Express, MongoDB, Vue.js). So, eveything I was learning, I was implementing in this project.
+It's a blog that I've been doing in one month while I was in classes (Node.js, Express, MongoDB, Vue.js). So, eveything I was learning, I was implementing in this project.
 
 
 ## ℹ️ So, this is what I was asked to do (translated from spanish):
@@ -115,6 +115,8 @@ With Cypress.io:
 
 ## THIS WAS TRANSLATED BY ME, SORRY FOR THE MISTAKES / SPANISH BELOW ##
 
+## Getting Started:
+
 If you want a copy of this project you need to have Node and MongoDB installed (my versions Node v13.6.0
 and MongoDB shell version v3.6.3 ) and then:
 
@@ -129,7 +131,7 @@ Enjoy! and Im open to receive any suggestion. Be nice please, Im a baby junior�
 
 # ROCK|BLOG. Proyecto Full Stack MEVN
 Este es mi primer proyecto con MEVN y estoy muy ogullosa de lo que he hecho! 🤗
-Es un blog que he estado haciendo a medida que he ido aprendiendo Node.js, MongoDB y Vue.js.
+Es un blog que he estado haciendo en un mes a medida que he ido aprendiendo Node.js, Express, MongoDB y Vue.js.
 
 
 ## ℹ️ Esto es lo que se me ha pedido hacer (copio y pego):
@@ -231,7 +233,8 @@ Tests de sistema de la API REST. Se deberán verificar algunas de las operacione
 
 Los tests se podrán implementar con cualquier tecnología (Selenium, Cypress, puppeteer…)
 
-Si quieres una copia de este proyecto tienes que tener instalado Node y MongoDB (mis versiones Node v13.6.0
+## Getting Started:
+Si quieres una copia de este proyecto tienes que tener instalado Node.js y MongoDB (mis versiones Node v13.6.0
 and MongoDB shell version v3.6.3 ) y luego:
 
 1. Clónate el repo.
