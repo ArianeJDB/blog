@@ -132,6 +132,8 @@ and MongoDB shell version v3.6.3 ) and then:
 2. Execute `npm install`
 3. Run backend with `npm start` in one terminal
 4. Run frontend with `npm run serve` in another one
+5. If you want to access as an admin, the username is 'ari', and de password is 'ane'
+6. If you want to access as a publisher, you can use 'patrick' with password 'hola', but you can register yourself and try it as a real publisher! =)
 
 Enjoy! and Im open to receive any suggestion. Please, **be nice** Im a baby junior👶
 
@@ -257,6 +259,8 @@ and MongoDB shell version v3.6.3 ) y luego:
 2. Ejecuta `npm install`
 3. Corre el back con `npm start` en una terminal
 4. Corre el front con `npm run serve` en otra
+5. Si quieres entrar como admin, entra con el usuario 'ari', y password 'ane'
+6. Si quieres entrar como publisher, entra con el usuario 'patrick' y password 'hola' o regístrate tú mismo y pruebalo siendo un publisher de verdad! =)
 
 Enjoy! Estoy abierta a recibir cualquier comentari y sugerencia pero, **be nice**! recuerda que soy una  baby junior👶
 
